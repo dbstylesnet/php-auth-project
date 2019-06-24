@@ -2,69 +2,72 @@
 
 namespace App\Geometry;
 
-class Rectangle // tODO implememnt interfavce
+class Rectangle implements ShapeInterface
 {
     /**
      * @var Point
      */
-    private $leftBottom;
+    private $leftTop;
 
     /**
      * @var Point
      */
-    private $rightTop;
+    private $rightBottom;
 
-    /**
-     * xOne, yOne top left point
-     * xTwo, yTwo right bottom point
-     */    
-    public function __construct(Point $leftBottom, Point $rightTop)
+   
+    public function __construct(Point $leftTop, Point $rightBottom)
     {
-        $this->leftBottom = $leftBottom;
-        $this->rightTop = $rightTop;
+        $this->leftTop = $leftTop;
+        $this->rightBottom = $rightBottom;
     }
 
     /**
-     * @return float
-     * assuming all positivie values
+     * @return string
      */
-    public function calculateWidth(): float
+    public function getName(): string 
     {
-        return $this->width = $this->xB - $this->xA;
-    }
-
-    /**
-     * @return float
-     * assuming all positivie values
-     */
-    public function calculateHeight(): float
-    {
-        return $this->height = $this->yB - $this->yA;
+        return 'Rectangle';
     }
 
     /**
      * @return float
      */
-    public function calculateArea(): float
+    public function getWidth(): float
     {
-        return $this->area = calculateWidth() * calculateHeight();
+        return $leftTop->getX() - $rightBottom->getX();
+    }
+
+    /**
+     * @return float
+     */
+    public function getHeight(): float
+    {
+        return $leftTop->getY() - $rightBottom->getY();
+    }
+
+    /**
+     * @return float
+     */
+    public function getArea(): float
+    {
+        return getWidth() * getHeight();
     }
     
     /**
      * @return float
      */
-    public function calculatePerimeter(): float
+    public function getPerimeter(): float
     {
-        return $this->perimeter = 2 * (calculateWidth() + calculateHeight());
+        return 2 * (getWidth() + getHeight());
     }    
 
     /**
      * @return float
      */
-    public function claculateDiagonal(): float
+    public function getDiagonal(): float
     {
-        return $this->diagonal = sqrt(
-            pow(calculateWidth(), 2) + pow(calculateHeight(), 2)
+        return sqrt(
+            pow(getWidth(), 2) + pow(getHeight(), 2)
         );
     }
 }
