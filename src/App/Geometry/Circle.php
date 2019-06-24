@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Circle
+class Circle // TODO implement interface
 {
     /**
      * @var float
@@ -10,23 +10,14 @@ class Circle
     private $radius;
 
     /**
-     * @var float
+     * @var Point
      */
-    private $diameter;
+    private $center;
 
-    /**
-     * @var float
-     */
-    private $area;
-
-    /**
-     * @var float
-     */
-    private $circumference;
 
     const PI = 3.14;
 
-    public function __construct(float $radius)
+    public function __construct(float $radius) // pass Point
     {
         $this->radius = $radius;
     }
@@ -36,7 +27,7 @@ class Circle
      */
     public function calculateDiameter(): float
     {
-        return $this->diameter = $this->radius * 2;
+        return $this->radius * 2;
     }
 
     /**
@@ -44,7 +35,7 @@ class Circle
      */
     public function calculateArea(): float
     {
-        return $this->area = SELF::PI * pow($this->radius, 2);
+        return SELF::PI * pow($this->radius, 2);
     }
 
     /**
@@ -52,6 +43,6 @@ class Circle
      */
     public function calculateCircumference(): float
     {
-        return $this->circumference = 2 * SELF::PI * $this->radius;
+        return 2 * SELF::PI * $this->radius;
     }
 }

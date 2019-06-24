@@ -2,64 +2,26 @@
 
 namespace App\Geometry;
 
-class Rectangle extends Point
+class Rectangle // tODO implememnt interfavce
 {
     /**
-     * @var float
+     * @var Point
      */
-    private $xA;
+    private $leftBottom;
 
     /**
-     * @var float
+     * @var Point
      */
-    private $yA;
-
-    /**
-     * @var float
-     */
-    private $xB;
-
-    /**
-     * @var float
-     */
-    private $yB;
-
-    /**
-     * @var float
-     */
-    private $width;
-
-    /**
-     * @var float
-     */
-    private $height;
-
-
-    /**
-     * @var float
-     */
-    private $area;
-
-    /**
-     * @var float
-     */
-    private $perimeter;
-    
-    /**
-     * @var float
-     */
-    private $diagonal;    
+    private $rightTop;
 
     /**
      * xOne, yOne top left point
      * xTwo, yTwo right bottom point
      */    
-    public function __construct(Point $xOne, Point $yOne, Point $xTwo, Point $yTwo)
+    public function __construct(Point $leftBottom, Point $rightTop)
     {
-        $this->xA = $xOne;
-        $this->yA = $yOne;
-        $this->xB = $xTwo;
-        $this->yB = $yTwo;
+        $this->leftBottom = $leftBottom;
+        $this->rightTop = $rightTop;
     }
 
     /**
