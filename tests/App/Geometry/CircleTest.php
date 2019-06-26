@@ -36,5 +36,4 @@ class CircleTest extends TestCase
         $this->assertEquals(31.4, $c4->getPerimeter());
     }
 
-    // isIntersect($a ShapeInterface, $b ShapeInterface): bool
 }

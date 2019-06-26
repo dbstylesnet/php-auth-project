@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Rectangle implements ShapeInterface
+class Rectangle implements ShapeInterface, Intersector
 {
     /**
      * @var Point
