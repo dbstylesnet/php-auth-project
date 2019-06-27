@@ -97,6 +97,8 @@ class Intersect implements IntersectorInterface
         }
 
         // test file
+
+        
         // $intersector = new Intersector(
             // [new RectangleWithCircleIntersector(), new CircleWithCircleIntersector(), .... ]
         //)
