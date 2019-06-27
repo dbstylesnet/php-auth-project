@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Circle implements ShapeInterface, Intersector
+class Circle implements ShapeInterface
 {
     /**
      * @var float

@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Rectangle implements ShapeInterface, Intersector
+class Rectangle implements ShapeInterface
 {
     /**
      * @var Point
@@ -50,7 +50,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getArea(): float
     {
-        return getWidth() * getHeight();
+        return $this->getWidth() * $this->getHeight();
     }
     
     /**
@@ -58,7 +58,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getPerimeter(): float
     {
-        return 2 * (getWidth() + getHeight());
+        return 2 * ($this->getWidth() + $this->getHeight());
     }    
 
     /**
@@ -67,7 +67,7 @@ class Rectangle implements ShapeInterface, Intersector
     public function getDiagonal(): float
     {
         return sqrt(
-            pow(getWidth(), 2) + pow(getHeight(), 2)
+            pow($this->getWidth(), 2) + pow($this->getHeight(), 2)
         );
     }
 }
