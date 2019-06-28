@@ -36,4 +36,13 @@ class CircleTest extends TestCase
         $this->assertEquals(31.4, $c4->getPerimeter());
     }
 
+    public function testCCinIntersect()
+    {
+        $p5 = new Point(0,0);
+        $c5 = new Circle(2, $p5);
+        $p6 = new Point(1,1);
+        $c6 = new Circle(3, $p5);        
+        $this->assertTrue($c5, $c6);
+    }
+
 }

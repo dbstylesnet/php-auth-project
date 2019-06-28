@@ -55,4 +55,9 @@ class Circle implements ShapeInterface
         return 2 * SELF::PI * $this->radius;
     }
 
+    public function getCenter(): Point
+    {
+        return $this->center;
+    }
+
 }
