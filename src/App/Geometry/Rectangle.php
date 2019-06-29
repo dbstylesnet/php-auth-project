@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Rectangle implements ShapeInterface, Intersector
+class Rectangle implements ShapeInterface
 {
     /**
      * @var Point
@@ -13,13 +13,18 @@ class Rectangle implements ShapeInterface, Intersector
      * @var Point
      */
     private $rightBottom;
-
    
+    /**
+     * @var Point
+     */
+    private $center;
+
     public function __construct(Point $leftTop, Point $rightBottom)
     {
         $this->leftTop = $leftTop;
         $this->rightBottom = $rightBottom;
-    }
+        $this->center = new Point(($this->leftTop->getX() + $this->rightBottom->getX()) / 2, ($this->leftTop->getY() + $this->rightBottom->getY()) / 2);
+     }
 
     /**
      * @return string
@@ -34,7 +39,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getWidth(): float
     {
-        return $leftTop->getX() - $rightBottom->getX();
+        return $this->leftTop->getX() - $this->rightBottom->getX();
     }
 
     /**
@@ -42,7 +47,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getHeight(): float
     {
-        return $leftTop->getY() - $rightBottom->getY();
+        return $this->leftTop->getY() - $this->rightBottom->getY();
     }
 
     /**
@@ -50,7 +55,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getArea(): float
     {
-        return getWidth() * getHeight();
+        return $this->getWidth() * $this->getHeight();
     }
     
     /**
@@ -58,7 +63,7 @@ class Rectangle implements ShapeInterface, Intersector
      */
     public function getPerimeter(): float
     {
-        return 2 * (getWidth() + getHeight());
+        return 2 * ($this->getWidth() + $this->getHeight());
     }    
 
     /**
@@ -67,7 +72,15 @@ class Rectangle implements ShapeInterface, Intersector
     public function getDiagonal(): float
     {
         return sqrt(
-            pow(getWidth(), 2) + pow(getHeight(), 2)
+            pow($this->getWidth(), 2) + pow($this->getHeight(), 2)
         );
     }
+
+    public function getCenter(): Point
+    {
+        return $this->center;
+    }
+
+    
+
 }

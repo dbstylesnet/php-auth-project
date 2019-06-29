@@ -2,7 +2,7 @@
 
 namespace App\Geometry;
 
-class Circle implements ShapeInterface, Intersector
+class Circle implements ShapeInterface
 {
     /**
      * @var float
@@ -53,6 +53,11 @@ class Circle implements ShapeInterface, Intersector
     public function getPerimeter(): float
     {
         return 2 * SELF::PI * $this->radius;
+    }
+
+    public function getCenter(): Point
+    {
+        return $this->center;
     }
 
 }
