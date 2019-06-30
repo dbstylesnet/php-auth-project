@@ -4,6 +4,7 @@ namespace App\Geometry;
 
 class RectangleWithCircleIntersector implements IntersectorInterface
 {
+
     public function isIntersect(ShapeInterface $a, ShapeInterface $b): bool
     {
         if ($a->getName() === 'Rectangle' && $b->getName() === 'Circle') {
@@ -43,4 +44,5 @@ class RectangleWithCircleIntersector implements IntersectorInterface
 
         return $cornerDist <= pow($b->getRadius(), 2);
     }
+    
 }
