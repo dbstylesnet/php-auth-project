@@ -33,7 +33,10 @@ class RectangleWithCircleIntersectorTest extends TestCase
         $p2 = new Point(2, 2);
         $p3 = new Point(3, 3);
         $b = new Rectangle($p2, $p3);
-        $this->assertEquals(false, $this->inIntersectCircleWithRectangle($a, $b));
+
+        $intersector = new Rectangle.....();
+
+        $this->assertEquals(false, $intersector->isIntersect($a, $b));
     }
 
     public function inIntersectCircleWithRectangleTest()

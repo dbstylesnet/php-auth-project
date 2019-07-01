@@ -2,10 +2,9 @@
 
 namespace App\Geometry;
 
-// composite design pattern
+
 class Intersect implements IntersectorInterface
 {
-//field itnersectors
 
     public function __construct($intersectors)
     {
