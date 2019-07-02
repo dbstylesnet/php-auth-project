@@ -7,45 +7,33 @@ use PHPUnit\Framework\TestCase;
 
 class RectangleWithCircleIntersectorTest extends TestCase
 {
-    public function isIntersectTest() 
+
+    $p1 = new Point(1, 1);
+    $a = new Circle(3, $p1);
+    $p2 = new Point(2, 2);
+    $p3 = new Point(3, 3);
+    $b = new Rectangle($p2, $p3);    
+    $intersector = new RectangleWithCircleIntersector();
+
+    public function testIsIntersect() 
     {
-        $p1 = new Point(1, 1);
-        $a = new Circle(3, $p1);
-        $p2 = new Point(2, 2);
-        $p3 = new Point(3, 3);
-        $b = new Rectangle($p2, $p3);
-        $this->assertEquals(true, this->isIntersect($a1, $b));
+        $this->assertEquals(true, $intersector->isIntersect($a, $b));
+        $this->assertEquals(true, $intersector->isIntersect($b, $a));
+        $this->assertEquals(true, $intersector->isIntersect($b, $b));
+        $this->assertEquals(true, $intersector->isIntersect($a, $a));
     }
 
-    public function isIntersectTest2() 
+    public function testIsIntersect2()
     {
-        $p1 = new Point(1, 1);
-        $a = new Circle(3, $p1);
-        $p2 = new Point(2, 2);
-        $b = new Circle(2, $p3);
-        $this->assertEquals(false, this->isIntersect($a1, $b));
-    }    
+        $p5 = new Point(1, 1);
+        $a = new Circle(3, $p5);
+        $p6 = new Point(2, 2);
+        $p7 = new Point(3, 3);
+        $b = new Rectangle($p6, $p7);
 
-    public function inIntersectCircleWithRectangleTest()
-    {
-        $p1 = new Point(1, 1);
-        $a = new Circle(3, $p1);
-        $p2 = new Point(2, 2);
-        $p3 = new Point(3, 3);
-        $b = new Rectangle($p2, $p3);
-
-        $intersector = new Rectangle.....();
+        $intersector = new RectangleWithCircleIntersector();
 
         $this->assertEquals(false, $intersector->isIntersect($a, $b));
     }
 
-    public function inIntersectCircleWithRectangleTest()
-    {
-        $p1 = new Point(1, 1);
-        $a = new Circle(3, $p1);
-        $p2 = new Point(2, 2);
-        $p3 = new Point(3, 3);
-        $b = new Rectangle($p2, $p3);
-        $this->assertEquals(true, $this->inIntersectCircleWithRectangle($b, $a));
-    }    
 }
