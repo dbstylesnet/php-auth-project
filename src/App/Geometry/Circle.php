@@ -60,4 +60,9 @@ class Circle implements ShapeInterface
         return $this->center;
     }
 
+    public function getRadius(): float
+    {
+        return $this->radius;
+    }    
+
 }

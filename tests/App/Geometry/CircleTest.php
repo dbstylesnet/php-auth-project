@@ -3,6 +3,8 @@
 namespace AppTest\Geometry;
 
 use App\Geometry\Circle;
+use App\Geometry\Point;
+use App\Geometry\CircleWithCircleIntersector;
 use PHPUnit\Framework\TestCase;
 
 class CircleTest extends TestCase
@@ -41,8 +43,9 @@ class CircleTest extends TestCase
         $p5 = new Point(0,0);
         $c5 = new Circle(2, $p5);
         $p6 = new Point(1,1);
-        $c6 = new Circle(3, $p5);        
-        $this->assertTrue($c5, $c6);
+        $c6 = new Circle(3, $p5); 
+        $intersector = new CircleWithCircleIntersector();       
+        $this->assertEquals(true, $intersector->isIntersect($c5, $c6));
     }
 
 }

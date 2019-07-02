@@ -19,7 +19,7 @@ class RectangleWithCircleIntersector implements IntersectorInterface
     
     }
 
-    private function inIntersectRectangleWithCircle(Rectangle $a, Circle $b): bool
+    private function inIntersectCircleWithRectangle(Rectangle $a, Circle $b): bool
     {
         $cDistX = abs($a->getCenter()->getX() - $b->getCenter()->getX());
         $cDistY = abs($a->getCenter()->getY() - $b->getCenter()->getY());

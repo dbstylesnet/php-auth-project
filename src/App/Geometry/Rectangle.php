@@ -39,7 +39,7 @@ class Rectangle implements ShapeInterface
      */
     public function getWidth(): float
     {
-        return $this->leftTop->getX() - $this->rightBottom->getX();
+        return - $this->leftTop->getX() + $this->rightBottom->getX();
     }
 
     /**
