@@ -19,10 +19,22 @@ class Rectangle implements ShapeInterface
      */
     private $center;
 
+    /**
+     * @var Point
+     */
+    private $leftBottom;
+
+    /**
+     * @var Point
+     */
+    private $rightTop;
+
     public function __construct(Point $leftTop, Point $rightBottom)
     {
         $this->leftTop = $leftTop;
         $this->rightBottom = $rightBottom;
+        $this->leftBottom = new Point(($this->leftTop->getX()), ($this->rightBottom->getY()));
+        $this->rightTop = new Point(($this->rightBottom->getX()), ($this->leftTop->getY()));
         $this->center = new Point(($this->leftTop->getX() + $this->rightBottom->getX()) / 2, ($this->leftTop->getY() + $this->rightBottom->getY()) / 2);
      }
 
