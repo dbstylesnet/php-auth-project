@@ -33,8 +33,8 @@ class Rectangle implements ShapeInterface
     {
         $this->leftTop = $leftTop;
         $this->rightBottom = $rightBottom;
-        $this->leftBottom = new Point(($this->leftTop->getX()), ($this->rightBottom->getY()));
-        $this->rightTop = new Point(($this->rightBottom->getX()), ($this->leftTop->getY()));
+        $this->leftBottom = new Point(($this->getLeftTop()->getX()), ($this->getRightBottom()->getY()));
+        $this->rightTop = new Point(($this->getRightBottom()->getX()), ($this->getLeftTop()->getY()));
         $this->center = new Point(($this->leftTop->getX() + $this->rightBottom->getX()) / 2, ($this->leftTop->getY() + $this->rightBottom->getY()) / 2);
      }
 
@@ -93,6 +93,23 @@ class Rectangle implements ShapeInterface
         return $this->center;
     }
 
-    
+    public function getLeftTop(): Point
+    {
+        return $this->leftTop;
+    }
 
+    public function getRightTop(): Point
+    {
+        return $this->rightTop;
+    }
+
+    public function getLeftBottom(): Point
+    {
+        return $this->leftBottom;
+    }
+
+    public function getRightBottom(): Point
+    {
+        return $this->rightBottom;
+    }
 }
