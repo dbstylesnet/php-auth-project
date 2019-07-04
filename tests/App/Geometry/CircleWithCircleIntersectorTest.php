@@ -22,7 +22,7 @@ class CircleWithCircleIntersectorTest extends TestCase
      * Shouldn't intersect
      * Shouldn't contain
      */
-    public function testIsIntersectIsContain() 
+    public function testIsIntersect() 
     { 
         $p1 = new Point(1, 1);
         $a = new Circle(1, $p1);
@@ -37,7 +37,7 @@ class CircleWithCircleIntersectorTest extends TestCase
      * Shouldn't contain
      * 1 intersect point
      */
-    public function testIsIntersectIsContainCase2() 
+    public function testIsIntersectCase2() 
     { 
         $p1 = new Point(1, 1);
         $a = new Circle(1, $p1);
@@ -51,7 +51,7 @@ class CircleWithCircleIntersectorTest extends TestCase
      * Should intersect
      * Should contain
      */
-    public function testIsIntersectIsContainCase3() 
+    public function testIsIntersectCase3() 
     { 
         $p1 = new Point(1.5, 1.5);
         $a = new Circle(1, $p1);
@@ -66,7 +66,7 @@ class CircleWithCircleIntersectorTest extends TestCase
      * Shouldn't contain
      * 2 intersect points
      */
-    public function testIsIntersectIsContainCase3() 
+    public function testIsIntersectCase4()  
     { 
         $p1 = new Point(1, 1);
         $a = new Circle(1, $p1);
