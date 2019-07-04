@@ -5,7 +5,7 @@ namespace AppTest\Geometry;
 use App\Geometry\Rectangle;
 use App\Geometry\Point;
 use App\Geometry\Circle;
-use App\Geometry\RectangleWithCircleIntersector;
+use App\Geometry\CircleWithCircleIntersector;
 use PHPUnit\Framework\TestCase;
 
 class CircleWithCircleIntersectorTest extends TestCase
@@ -41,7 +41,7 @@ class CircleWithCircleIntersectorTest extends TestCase
     { 
         $p1 = new Point(1, 1);
         $a = new Circle(1, $p1);
-        $p2 = new Point(3, 1);
+        $p2 = new Point(2.999999, 1);
         $b = new Circle(1, $p2);
 
         $this->assertEquals(true, $this->intersector->isIntersect($a, $b));
