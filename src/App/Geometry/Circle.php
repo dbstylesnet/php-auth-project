@@ -15,7 +15,7 @@ class Circle implements ShapeInterface
     private $center;
 
 
-    const PI = 3.14;
+    const PI = 3.14; // TODO use M_PI @link{https://www.php.net/manual/en/function.pi.php}
 
     public function __construct(float $radius, Point $locationPoint)
     {

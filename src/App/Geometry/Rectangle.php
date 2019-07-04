@@ -4,6 +4,8 @@ namespace App\Geometry;
 
 class Rectangle implements ShapeInterface
 {
+    const NAME = 'Rectangle';
+
     /**
      * @var Point
      */
@@ -43,7 +45,7 @@ class Rectangle implements ShapeInterface
      */
     public function getName(): string 
     {
-        return 'Rectangle';
+        return 'Rectangle'; // self::NAME
     }
 
     /**
@@ -51,7 +53,7 @@ class Rectangle implements ShapeInterface
      */
     public function getWidth(): float
     {
-        return - $this->leftTop->getX() + $this->rightBottom->getX();
+        return - $this->leftTop->getX() + $this->rightBottom->getX(); // -b + a -> a - b 
     }
 
     /**

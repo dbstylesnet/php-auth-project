@@ -10,9 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 class RectangleWithCircleIntersectorTest extends TestCase
 {
-
+    /**
+     * @var IntersectorInterface
+     */
     private $intersector;
 
+    /**
+     * @interitdoc
+     */
     protected function setUp()
     {
         $this->intersector = new RectangleWithCircleIntersector();    
@@ -81,7 +86,7 @@ class RectangleWithCircleIntersectorTest extends TestCase
         $this->assertEquals(true, $this->intersector->isIntersect($a1, $b1));
     }
 
-        /**
+    /**
      * Should intersect 
      * Should contain
      */

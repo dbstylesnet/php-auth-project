@@ -7,7 +7,7 @@ class RectangleWithCircleIntersector implements IntersectorInterface
 
     public function isIntersect(ShapeInterface $a, ShapeInterface $b): bool
     {
-        if ($a->getName() === 'Rectangle' && $b->getName() === 'Circle') {
+        if ($a->getName() === 'Rectangle' && $b->getName() === 'Circle') { // Rectangle::NAME, Circle::NAME
             return $this->inIntersectCircleWithRectangle($a, $b); 
         }
 

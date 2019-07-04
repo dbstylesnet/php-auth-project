@@ -41,7 +41,7 @@ class CircleWithCircleIntersectorTest extends TestCase
     { 
         $p1 = new Point(1, 1);
         $a = new Circle(1, $p1);
-        $p2 = new Point(2.999999, 1);
+        $p2 = new Point(3, 1);
         $b = new Circle(1, $p2);
 
         $this->assertEquals(true, $this->intersector->isIntersect($a, $b));
@@ -74,6 +74,19 @@ class CircleWithCircleIntersectorTest extends TestCase
         $b = new Circle(1, $p2);
 
         $this->assertEquals(true, $this->intersector->isIntersect($a, $b));
+    }
+
+
+    /**
+     * Should intersect
+     * Should contain
+     */
+    public function testIsIntersectCase5() 
+    { 
+        $p1 = new Point(1.5, 1.5);
+        $a = new Circle(1, $p1);
+
+        $this->assertEquals(true, $this->intersector->isIntersect($a, $a));
     }
 
     public function testShouldThrowAnExceptionForUnsupportedTypes()
