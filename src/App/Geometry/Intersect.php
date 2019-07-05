@@ -18,13 +18,13 @@ class Intersect implements IntersectorInterface
         $result = false;
         $isSupported = false;
 
-        foreach ($this->intersectors as $intersector) {
+        foreach ($this->intersectors as $intersectors) {
             if ($isSupport) {
                 break;
             }
 
             try {
-                $result = $intersector->isIntersect($a, $b);
+                $result = $intersectors->isIntersect($a, $b);
                 $isSupported = true;
             } catch (UnspportedShapeExcpetion $e) {
 
