@@ -17,11 +17,6 @@ class CircleWithCircleIntersector implements IntersectorInterface
 
     private function inIntersectCircleWithCircle(Circle $a, Circle $b): bool
     {
-        // return 
-        //     pow($a->getCenter()->getX() - $b->getCenter()->getX(), 2) 
-        //     + pow($a->getCenter()->getY() - $b->getCenter()->getY(), 2) 
-        //     < pow($a->getRadius() + $b->getRadius(), 2); 
-
         return $a->getCenter()->distance($b->getCenter()) <= ($a->getRadius() + $b->getRadius());
     }
 

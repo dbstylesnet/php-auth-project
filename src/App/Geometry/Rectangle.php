@@ -45,7 +45,7 @@ class Rectangle implements ShapeInterface
      */
     public function getName(): string 
     {
-        return 'Rectangle'; // self::NAME
+        return SELF::NAME;
     }
 
     /**
@@ -53,7 +53,7 @@ class Rectangle implements ShapeInterface
      */
     public function getWidth(): float
     {
-        return - $this->leftTop->getX() + $this->rightBottom->getX(); // -b + a -> a - b 
+        return $this->rightBottom->getX() - $this->leftTop->getX();
     }
 
     /**
