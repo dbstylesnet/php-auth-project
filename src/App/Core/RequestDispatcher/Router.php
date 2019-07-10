@@ -10,14 +10,21 @@ class Router
         "POST"
     );
 
-    private $routes;
+    private $route;
+
+    /**
+     * @var array;
+     */
+    // private $routes;
+
+    private $currentRoute;
+
 
     public function __construct(RequestInterface $request)
     {
         $this->request = $request;
-        $this->routes = $request['routes'];
-        $this->getCurrentRoute();
-        // var_dump($request);
+        // $this->route = $this->getCurrentRoute();
+        // var_dump($this->route);  
     }
 
     public function __call($name, $args)
@@ -32,27 +39,46 @@ class Router
         $this->{strtolower($name)}[$this->formatRoute($route)] = $method;
     }
 
-    public function getCurrentRoute()
-    {
-        if (!isset($_SERVER['PATH_INFO'])) {
-            $this->currentRoute = $_SERVER['PATH_INFO'];
-        }
-    }
+    // private function getCurrentRoute()
+    // {
+    //     if (!isset($_SERVER['PATH_INFO'])) {
+    //         // $this->currentRoute = $_SERVER['PATH_INFO'];
+    //         // var_dump($this->currentRoute);
+    //         $this->currentRoute = $_SERVER['REQUEST_URI'];
+    //         var_dump($this->currentRoute);
+    //     }
+    // }
 
-    public function route()
-    {
-        $route = $this->currentRoute;
+    // public function route()
+    // {
+    //     $route = $this->currentRoute;
 
-        if (!isset($this->routes[$route])) {
-            $route = '/404';
-        }
+    //     // if (!isset($this->routes[$route])) {
+    //     //     $route = '/404';
+    //     // }
 
-        if (is_callable($this->routes[$route])) {
-            echo $this->routes[$route]();
-        }
-    }
+    //     if ($route == '/profile') {
+    //         var_dump($this->currentRoute);
+    //     } elseif ($route == '/profiles') {
+    //         var_dump($this->currentRoute);
+    //     } elseif ($route == '/sayhello') {
+    //         return 'HELLO ';
+    //     } else {
+    //         return $this->defaultRequestHandler();
+    //     }
 
-    
+
+        // if (is_callable($this->routes[$route])) {
+        //     var_dump($this->routes[$route]());
+        //     echo $this->routes[$route]();
+        // }
+    // }
+
+
+
+
+
+
     /**
      * Removes trailing forward slashes from the right of the route.
      * @param route (string)
@@ -77,16 +103,10 @@ class Router
     {
         header("{$this->request->serverProtocol} 404 Not Found");
     }
-
-    public function __destruct()
-    {
-        $this->resolve();
-    }
-
         /**
      * Resolves a route
      */
-    function resolve()
+    public function resolve()
     {
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
         $formattedRoute = $this->formatRoute($this->request->requestUri);
