@@ -17,35 +17,20 @@ $router = new Router($request);
 
 $router->get('/');
 
-$router->get('/profile');
+$router->get('/profile', function(RequestInterface $request) {
+    return 'Your profile';
+});
 
 $router->get('/sayhello', function(RequestInterface $request) {
     return 'HELLO ' . $request->getQueryParam('name');
 });
 
-$router->post('/data', function(RequestInterface $request) {
-    return json_encode($request->getBody());
+$router->get('/figuretype', function(RequestInterface $request) {
+    return 'Figure type: ' . $request->getQueryParam('circle');
 });
 
-$router->post('/changecookie', function(RequestInterface $request) {
-    // return $request->setChangeCookie($cookieName, 'Mike Smike', time() + (30));
-});
-
-$router->post('/diffcookie', function(RequestInterface $request) {
-    // return $request->setDifferentCookie();
-});
-
-// $router->get('/getnrfigures', function(RequestInterface $request) {
-//     return 'There are ' . $request->getQueryParam('nrfigures') . ' figures';
-// });
-
-// $router->get('/getallfigures', function(RequestInterface $request) {
-//     return 'These are the figures ' . $request->getAllFigures();
-// });
-
-// has to be 
-// $router->get('/getfigure/{id}', function(RequestInterface $request) {
-//     return 'This is figure nr ' . $request->figureId . ' $request->getFigure()';
+// $router->post('/data', function(RequestInterface $request) {
+//     return json_encode($request->getBody());
 // });
 
 $router->resolve();

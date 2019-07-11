@@ -7,7 +7,8 @@ use App\Core\RequestDispatcher\RequestInterface;
 use App\Core\RequestDispatcher\Router;
 use PHPUnit\Framework\TestCase;
 
-class RouterTest extends TestCase{
+class RouterTest extends TestCase
+{
 
 
     // $router->get('/sayhello', function(RequestInterface $request) {
@@ -19,6 +20,7 @@ class RouterTest extends TestCase{
             'GET',
             '/sayhello',
             'https',
+            'mozilla',
             [],
             ['name' => 'alex'],
             []
@@ -38,40 +40,73 @@ class RouterTest extends TestCase{
         $router->resolve();
 
         $this->assertEquals('alex', $name);
-    }
+    }    
 
-    // $router->post('/data', function(RequestInterface $request) {
-    //     return json_encode($request->getBody());
-    // });
-    /*public function testPostData()
+    public function testProfile()
     {
-        $request = new Request();
+        $request = new Request(
+            'GET',
+            '/profile',
+            'https',
+            'mozilla',
+            [],
+            [],
+            []
+        );
+
+        $mockProfileCall = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
+            ->getMock();
+
+        $mockProfileCall->expects($this->once())
+            ->method('shouldBeCalled')
+            ->with($request);
+
+        $mockProfileCall->expects($this->never())
+            ->method('shouldNotBeCalled');
+
         $router = new Router($request);
 
-        assertEquals('HELLO',
-            $router->post('/data', function(RequestInterface $request) {
-                return 'HELLO';
-            })
-        );
-    }*/
+        $router->get('/profile', [$mockProfileCall, 'shouldBeCalled']);
 
-        // $router->post('/data', function(RequestInterface $request) {
-    //     return json_encode($request->getBody());
-    // });
-    // public function testPostData()
-    // { 
-    //     $request = new Request();
+        $router->get('/', [$mockProfileCall, 'shouldNotBeCalled']);
+
+        $router->resolve();
+    }    
+
+    // public function testFigureType()
+    // {
+    //     $request = new Request(
+    //         'GET',
+    //         '/figuretype',
+    //         'https',
+    //         'mozilla',
+    //         [],
+    //         [],
+    //         []
+    //     );
+
+    //     $mockFigureTypeCall = $this->getMockBuilder(\stdClass::class)
+    //         ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
+    //         ->getMock();
+
+    //     $mockProfileCall->expects($this->once())
+    //         ->method('shouldBeCalled')
+    //         ->with($request);
+
+    //     $mockProfileCall->expects($this->never())
+    //         ->method('shouldNotBeCalled');
+
     //     $router = new Router($request);
 
-    //     assertIsStriwng(true,
-    //         $router->get('/profile') 
-    //     );
-    // }
+    //     $router->get('/profile', [$mockProfileCall, 'shouldBeCalled']);
+
+    //     $router->get('/', [$mockProfileCall, 'shouldNotBeCalled']);
+
+    //     $router->resolve();
+    // }    
 
     
 
-
-    
-    
 }
 

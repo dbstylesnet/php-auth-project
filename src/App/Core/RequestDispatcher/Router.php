@@ -23,8 +23,6 @@ class Router
     public function __construct(RequestInterface $request)
     {
         $this->request = $request;
-        // $this->route = $this->getCurrentRoute();
-        // var_dump($this->route);  
     }
 
     public function __call($name, $args)
@@ -38,46 +36,6 @@ class Router
 
         $this->{strtolower($name)}[$this->formatRoute($route)] = $method;
     }
-
-    // private function getCurrentRoute()
-    // {
-    //     if (!isset($_SERVER['PATH_INFO'])) {
-    //         // $this->currentRoute = $_SERVER['PATH_INFO'];
-    //         // var_dump($this->currentRoute);
-    //         $this->currentRoute = $_SERVER['REQUEST_URI'];
-    //         var_dump($this->currentRoute);
-    //     }
-    // }
-
-    // public function route()
-    // {
-    //     $route = $this->currentRoute;
-
-    //     // if (!isset($this->routes[$route])) {
-    //     //     $route = '/404';
-    //     // }
-
-    //     if ($route == '/profile') {
-    //         var_dump($this->currentRoute);
-    //     } elseif ($route == '/profiles') {
-    //         var_dump($this->currentRoute);
-    //     } elseif ($route == '/sayhello') {
-    //         return 'HELLO ';
-    //     } else {
-    //         return $this->defaultRequestHandler();
-    //     }
-
-
-        // if (is_callable($this->routes[$route])) {
-        //     var_dump($this->routes[$route]());
-        //     echo $this->routes[$route]();
-        // }
-    // }
-
-
-
-
-
 
     /**
      * Removes trailing forward slashes from the right of the route.
@@ -96,20 +54,22 @@ class Router
     {
         //sends a raw HTTP header to a client.
         //header(string,replace,http_response_code) 
-        header("{$this->request->serverProtocol} 405 Method Not allowed");
+        header("{$this->request->getServerProtocol()} 405 Method Not allowed");
     }
 
     private function defaultRequestHandler()
     {
-        header("{$this->request->serverProtocol} 404 Not Found");
+        header("{$this->request->getServerProtocol()} 404 Not Found");
     }
-        /**
+
+
+    /**
      * Resolves a route
      */
     public function resolve()
     {
-        $methodDictionary = $this->{strtolower($this->request->requestMethod)};
-        $formattedRoute = $this->formatRoute($this->request->requestUri);
+        $methodDictionary = $this->{strtolower($this->request->getRequestMethod())};
+        $formattedRoute = $this->formatRoute($this->request->getRequestUri());
         $method = $methodDictionary[$formattedRoute];
 
         if (is_null($method))

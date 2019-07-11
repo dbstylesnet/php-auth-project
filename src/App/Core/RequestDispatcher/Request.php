@@ -4,11 +4,13 @@ namespace App\Core\RequestDispatcher;
 
 class Request implements RequestInterface
 {
-    public $requestMethod;
+    private $requestMethod;
 
-    public $requestUri; // TODO private and add public getters
+    private $requestUri;
 
     private $serverProtocol;
+
+    private $userAgent;
 
     private $cookie;
 
@@ -23,6 +25,7 @@ class Request implements RequestInterface
         $requestMethod,
         $requestUri,
         $serverProtocol,
+        $userAgent,
         $cookie,
         $query,
         $post
@@ -30,6 +33,7 @@ class Request implements RequestInterface
         $this->requestMethod = $requestMethod;
         $this->requestUri = $requestUri;
         $this->serverProtocol = $serverProtocol;
+        $this->userAgent = $userAgent;
         $this->cookie = $cookie;
         $this->query = $query;
         $this->post = $post;
@@ -44,6 +48,7 @@ class Request implements RequestInterface
             $_SERVER['REQUEST_METHOD'],
             $_SERVER['REQUEST_URI'],
             $_SERVER['SERVER_PROTOCOL'],
+            $_SERVER['HTTP_USER_AGENT'],
             $_COOKIE,
             $_GET,
             $_POST
@@ -68,6 +73,26 @@ class Request implements RequestInterface
     public function getQueryParam(string $name)
     {
         return $this->query[$name] ?? null;
+    }
+
+    public function getRequestUri()
+    {
+        return $this->requestUri;
+    }
+
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+    
+    public function getServerProtocol()
+    {
+        return $this->serverProtocol;
+    }
+
+    public function getRequestMethod()
+    {
+        return $this->requestMethod;
     }
 }
 
