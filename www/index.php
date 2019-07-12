@@ -26,11 +26,26 @@ $router->get('/sayhello', function(RequestInterface $request) {
 });
 
 $router->get('/figuretype', function(RequestInterface $request) {
+
+
+
     return 'Figure type: ' . $request->getQueryParam('circle');
 });
 
-// $router->post('/data', function(RequestInterface $request) {
-//     return json_encode($request->getBody());
-// });
+
+$router->get('/someroute', function(RequestInterface $request) {
+
+    // $name = $request->getQueryParam('name');
+
+
+    // $response = new Response();
+    // $response->setCode(200) // Response::HTTP_OK
+    // $response->setCookie('some_cookie', 'hello')
+    // $response->setContent("Hello {$name}");
+
+    //return $response;
+    
+    return 'Figure type: ' . $request->getQueryParam('circle');
+});
 
 $router->resolve();

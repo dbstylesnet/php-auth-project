@@ -4,12 +4,22 @@ namespace App\Core\RequestDispatcher;
 
 interface RequestInterface
 {
-    public function getRequestMethod();
-    public function getRequestUri();
-    public function getPost();
-    public function getCookie();
-    public function getQuery();
-    public function getUserAgent();    
-    public function getQueryParam();    
-    public function getServerProtocol();
+    /**
+     * 
+     */
+    public function getRequestMethod(): string;
+
+    public function getRequestUri(): string;
+
+    public function getPost(): string;
+
+    public function getCookie(): string;
+
+    public function getQuery(): string;
+
+    public function getUserAgent(): string;   
+
+    public function getQueryParam(string $name);  
+      
+    public function getServerProtocol(): string;
 }

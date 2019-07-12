@@ -7,7 +7,9 @@ class Router
     private $request;
     private $supportedHttpMethods = array(
         "GET",
-        "POST"
+        "POST",
+        "OPTIONS",
+        "DELETE"
     );
 
     private $route;
@@ -79,5 +81,19 @@ class Router
         }
 
         echo call_user_func_array($method, array($this->request));
+
+        // $response = call_user_func_array($method, array($this->request));
+
+        // $response->send();
+
+        //
+
+        // Response::send = function () {
+            // setcontent type, set encoding
+            // setcookie($response->getCookie());
+            // setheaders($response->getHeaders());
+            // print $response->getContent();
+            // 
+        // }
     }
 }

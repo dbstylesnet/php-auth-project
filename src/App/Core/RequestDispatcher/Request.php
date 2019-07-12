@@ -18,9 +18,6 @@ class Request implements RequestInterface
 
     private $post;
 
-    // private $routes;
-
-
     public function __construct(
         $requestMethod,
         $requestUri,
@@ -39,9 +36,6 @@ class Request implements RequestInterface
         $this->post = $post;
     }
 
-    /**
-     * 
-     */
     public static function createFromGlobals()
     {
         return new Request(
@@ -55,17 +49,20 @@ class Request implements RequestInterface
         );
     }
 
-    public function getQuery(): array
+    /**
+     * @inheritdoc
+     */
+    public function getRequestMethod(): string
+    {
+        return $this->requestMethod;
+    }
+
+    public function getQuery(): string
     {
         return $this->query;
     }
 
-    public function getPost(): array
-    {
-        return $this->post;
-    }
-
-    public function getCookie(): array
+    public function getCookie(): string
     {
         return $this->cookie;
     }
@@ -75,25 +72,23 @@ class Request implements RequestInterface
         return $this->query[$name] ?? null;
     }
 
-    public function getRequestUri()
+    public function getRequestUri(): string
     {
         return $this->requestUri;
     }
 
-    public function getUserAgent()
+    public function getUserAgent(): string
     {
         return $this->userAgent;
     }
     
-    public function getServerProtocol()
+    public function getServerProtocol(): string
     {
         return $this->serverProtocol;
     }
 
-    public function getRequestMethod()
+    public function getPost(): string
     {
-        return $this->requestMethod;
+        return $this->post;
     }
 }
-
-

@@ -9,11 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class RouterTest extends TestCase
 {
-
-
-    // $router->get('/sayhello', function(RequestInterface $request) {
-    //     return 'HELLO ' . $request->getQueryParam('name');
-    // });
     public function testSayHello()
     {
         $request = new Request(
@@ -50,9 +45,11 @@ class RouterTest extends TestCase
             'https',
             'mozilla',
             [],
-            [],
+            ['name' => 'alex'],
             []
         );
+
+        $this->assertEquals('alex', $request->getQueryParam('name'));
 
         $mockProfileCall = $this->getMockBuilder(\stdClass::class)
             ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
@@ -72,41 +69,6 @@ class RouterTest extends TestCase
         $router->get('/', [$mockProfileCall, 'shouldNotBeCalled']);
 
         $router->resolve();
-    }    
-
-    // public function testFigureType()
-    // {
-    //     $request = new Request(
-    //         'GET',
-    //         '/figuretype',
-    //         'https',
-    //         'mozilla',
-    //         [],
-    //         [],
-    //         []
-    //     );
-
-    //     $mockFigureTypeCall = $this->getMockBuilder(\stdClass::class)
-    //         ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
-    //         ->getMock();
-
-    //     $mockProfileCall->expects($this->once())
-    //         ->method('shouldBeCalled')
-    //         ->with($request);
-
-    //     $mockProfileCall->expects($this->never())
-    //         ->method('shouldNotBeCalled');
-
-    //     $router = new Router($request);
-
-    //     $router->get('/profile', [$mockProfileCall, 'shouldBeCalled']);
-
-    //     $router->get('/', [$mockProfileCall, 'shouldNotBeCalled']);
-
-    //     $router->resolve();
-    // }    
-
-    
-
+    }
 }
 
