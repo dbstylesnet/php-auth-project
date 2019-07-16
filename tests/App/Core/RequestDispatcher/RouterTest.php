@@ -70,5 +70,40 @@ class RouterTest extends TestCase
 
         $router->resolve();
     }
+
+    public function testProfilePath()
+    {
+        $request = new Request(
+            'GET',
+            '/profile?name=alex',
+            'https',
+            'mozilla',
+            [],
+            ['name' => 'alex'],
+            []
+        );
+
+        $this->assertEquals('alex', $request->getQueryParam('name'));
+
+        $mockProfileCall = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
+            ->getMock();
+
+        $mockProfileCall->expects($this->once())
+            ->method('shouldBeCalled')
+            ->with($request);
+
+        $mockProfileCall->expects($this->never())
+            ->method('shouldNotBeCalled');
+
+        $router = new Router($request);
+
+        $router->get('/profile', [$mockProfileCall, 'shouldBeCalled']);
+
+        $router->get('/', [$mockProfileCall, 'shouldNotBeCalled']);
+
+        $router->resolve();
+    }
+
 }
 

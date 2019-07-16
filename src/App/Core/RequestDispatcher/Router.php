@@ -45,11 +45,16 @@ class Router
      */
     private function formatRoute($route)
     {
+        // profile?name=alex&b=123
+        $route = parse_url($route)['path'];
         $result = rtrim($route, '/');
+
         if ($result === '')
         {
             return '/';
         }
+
+        return $result;
     }
 
     private function invalidMethodHandler()
@@ -63,7 +68,6 @@ class Router
     {
         header("{$this->request->getServerProtocol()} 404 Not Found");
     }
-
 
     /**
      * Resolves a route
@@ -84,28 +88,6 @@ class Router
 
         $response = call_user_func_array($method, array($this->request));
 
-        $response->send(
-            $response->getServerProtocol(),
-            $response->getRequestMethod(),
-            $response->getRequestUri(),
-            $response->getCookie(),
-            $response->getPost()
-        );
-
-        // $response->send(
-        //     $this->setHTTPCode($response->getServerProtocol());
-        //     $this->setContentType($response->getRequestMethod());
-        //     $this->setCookies($response->getCookie());
-        //     $this->setHeaders($response->getRequestUri());
-        //     $this->setResponseContent($response->getPost());           
-        // );
-
-        
-        // Response::send = function () {
-        //     setcontent type, set encoding
-        //     setcookie($response->getCookie());
-        //     setheaders($response->getHeaders());
-        //     print $response->getContent();
-        // }
+        $response->send();
     }
 }
