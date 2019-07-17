@@ -6,6 +6,8 @@ use App\Core\RequestDispatcher\Router;
 use App\Core\RequestDispatcher\Request;
 use App\Core\RequestDispatcher\Response;
 use App\Core\RequestDispatcher\JsonResponse;
+use App\Core\RequestDispatcher\XmlResponse;
+use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
 
 $request = Request::createFromGlobals();
@@ -59,12 +61,17 @@ $router->get('/jsontest', function (RequestInterface $request) {
     return $response;
 });
 
+$authController = new AuthentificationController();
+
+
+
+$router->get('/auth', [$authController, 'index']);
 
 /**
  * xml content type
  */
 $router->get('/xmltest', function (RequestInterface $request) {
-    $response = new XMLResponse();
+    $response = new XmlResponse();
 
     if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
         $response->setHTTPCode(Response::HTTP_OK);
@@ -76,7 +83,7 @@ $router->get('/xmltest', function (RequestInterface $request) {
     }
 
     $response->setHTTPCode(Response::HTTP_NOT_FOUND);
-    $response->setContentType("application/json");
+    $response->setContentType("text/xml");
     $response->setContent("We don't know " . $request->getQueryParam("user"));
     $response->setCookie("uid", null, time());
 
@@ -84,9 +91,32 @@ $router->get('/xmltest', function (RequestInterface $request) {
 });
 
 
+/**
+ * xml dom content type
+ */
+$router->get('/xmltestdom', function (RequestInterface $request) {
+    $response = new XmlResponseDom();
+
+    if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
+        $response->setHTTPCode(Response::HTTP_OK);
+        $response->setContentType("text/xml");
+        $response->setContent("Hello " . $request->getQueryParam("user"));
+        $response->setCookie("uid", "someid", time());
+
+        return $response;
+    }
+
+    $response->setHTTPCode(Response::HTTP_NOT_FOUND);
+    $response->setContentType("text/xml");
+    $response->setContent("We don't know " . $request->getQueryParam("user"));
+    $response->setCookie("uid", null, time());
+
+    return $response;
+});
+
 
 $router->get('/sayhello', function (RequestInterface $request) {
-    $response = new JsonResponse();
+    $response = new XmlResponse();
 
     $response->setHTTPCode(Response::HTTP_OK);
 

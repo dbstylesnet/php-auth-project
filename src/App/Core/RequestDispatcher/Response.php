@@ -39,7 +39,8 @@ class Response implements ResponseInterface
 
     public function setHTTPCode($httpCode)
     {
-        $this->httpCode = $httpCode; 
+        $this->httpCode = $httpCode;
+        return $this; // the same in other settert
     }
 
     public function setContentType($contentType)
@@ -68,12 +69,16 @@ class Response implements ResponseInterface
         header("Status: {$this->httpCode}");
         header("Content-type: {$this->contentType}; charset=utf-8");
 
-        // $this->time = $time + SELF::COOKIE_TIMEOUT;
+        $this->time = $time + SELF::COOKIE_TIMEOUT;
         // $this->time = time() + SELF::COOKIE_TIMEOUT;
         // $time = time() + SELF::COOKIE_TIMEOUT;
         foreach ($this->cookies as $name => [$value, $time]) {
             setcookie($name, $value, $time + time());
         }
+
+        // foreach ($this->headers as $name => [$value, $time]) {
+        //     setcookie($name, $value, $time + time());
+        // }        
 
         //setheaders($response->headers);
 
