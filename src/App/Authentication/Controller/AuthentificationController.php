@@ -1,17 +1,19 @@
 <?php
 
-// declare namespace
+namespace App\Authentication\Controller;
 
-//use dependencies via namespace
+use App\Core\RequestDispatcher\BaseController;
+use App\Core\RequestDispatcher\Response;
 
 class AuthentificationController extends BaseController
 {
-    public function index(RequestInterface $request)
+    public function index()
     {
-        return $this->response()
-            ->setHTTPCode(Response::HTTP_NOT_FOUND)
-            ->setContentType("application/json")
-            ->setContent("We don't know " . $request->getQueryParam("user"))
+        // return $this->response()
+        //  ->setContent($this->renderTempalte('/templates/auth/login.inc.php'), []);
+
+        return $this->xmlResponse()
+            ->setContent("Hello in Auth")
             ->setCookie("uid", null, time());
     }
 }

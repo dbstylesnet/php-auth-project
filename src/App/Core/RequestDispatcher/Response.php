@@ -23,10 +23,10 @@ class Response implements ResponseInterface
     private $time;
 
     public function __construct(
-        $httpCode = null,
+        $httpCode = self::HTTP_OK,
         $contentType = null,
         $cookies = [],
-        $headers = null,
+        $headers = [],
         $responseContent = null
     )
     {
@@ -40,46 +40,53 @@ class Response implements ResponseInterface
     public function setHTTPCode($httpCode)
     {
         $this->httpCode = $httpCode;
-        return $this; // the same in other settert
+        return $this;
     }
 
     public function setContentType($contentType)
     {
         $this->contentType = $contentType;
+        return $this;
     }
 
     public function setCookie(string $name, ?string $value, ?int $time = self::COOKIE_TIMEOUT)
     {
         $this->cookies[$name] = [$value, $time]; 
+        return $this;
     }
 
-    public function setHeaders($headers)
+    // public function setHeader(string $name, $value)
+    // {
+        
+    //     header($name.': '.$value);
+    //     return $this;
+    // }
+
+    public function setHeader(string $name, ?string $value)
     {
-        $this->headers = $headers;
+        $this->headers[$name] = $value;
+        return $this;
     }
 
     public function setContent($responseContent)
     {
         $this->content = $responseContent;
+        return $this;
     }
 
     //
     public function send()
     {
-        header("Status: {$this->httpCode}");
-        header("Content-type: {$this->contentType}; charset=utf-8");
-
-        $this->time = $time + SELF::COOKIE_TIMEOUT;
-        // $this->time = time() + SELF::COOKIE_TIMEOUT;
-        // $time = time() + SELF::COOKIE_TIMEOUT;
         foreach ($this->cookies as $name => [$value, $time]) {
             setcookie($name, $value, $time + time());
         }
 
-        // foreach ($this->headers as $name => [$value, $time]) {
-        //     setcookie($name, $value, $time + time());
-        // }        
+        header("Status: {$this->httpCode}");
+        // header("Content-type: {$this->contentType}; charset=utf-8");
 
+        foreach ($this->headers as $name => $value) {
+            header("$name: $value");
+        }        
         //setheaders($response->headers);
 
         print $this->content;

@@ -9,6 +9,9 @@ use App\Core\RequestDispatcher\JsonResponse;
 use App\Core\RequestDispatcher\XmlResponse;
 use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
+// use App\Core\RequestDispatcher\BaseController;
+use App\Authentication\Controller\BaseController;
+use App\Authentication\Controller\AuthentificationController;
 
 $request = Request::createFromGlobals();
 $router = new Router($request);
@@ -33,8 +36,6 @@ $router->get('/texttest', function (RequestInterface $request) {
     $response->setContent("We don't know " . $request->getQueryParam("user"));
     $response->setCookie("uid", null, 0);
 
-    $response->setHeader('traceid', 12312312321);
-
     return $response;
 });
 
@@ -45,10 +46,16 @@ $router->get('/jsontest', function (RequestInterface $request) {
     $response = new JsonResponse();
 
     if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        $response->setHTTPCode(Response::HTTP_OK);
-        $response->setContentType("application/json");
+        // $response->setHTTPCode(Response::HTTP_OK);
+        // $response->setContentType("application/json");
         $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid", time());
+        $response->setCookie("uid", "someid");
+        $response->setHeader("Status", Response::HTTP_OK);
+        $response->setHeader("traceid", 12312312321); 
+        $response->setHeader("Content-type", "application/json charset=utf-8"); 
+        // header("Content-type: {$this->contentType}; charset=utf-8");       
+        // header("Status: {$this->httpCode}");
+        // header("Content-type: {$this->contentType}; charset=utf-8");
 
         return $response;
     }
@@ -56,14 +63,13 @@ $router->get('/jsontest', function (RequestInterface $request) {
     $response->setHTTPCode(Response::HTTP_NOT_FOUND);
     $response->setContentType("application/json");
     $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null, time());
+    $response->setCookie("uid", null);
 
     return $response;
 });
 
+
 $authController = new AuthentificationController();
-
-
 
 $router->get('/auth', [$authController, 'index']);
 
@@ -76,8 +82,9 @@ $router->get('/xmltest', function (RequestInterface $request) {
     if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
         $response->setHTTPCode(Response::HTTP_OK);
         $response->setContentType("text/xml");
+        $response->setHeader("traceid", 12312312321); 
         $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid", time());
+        $response->setCookie("uid", "someid");
 
         return $response;
     }
@@ -85,31 +92,7 @@ $router->get('/xmltest', function (RequestInterface $request) {
     $response->setHTTPCode(Response::HTTP_NOT_FOUND);
     $response->setContentType("text/xml");
     $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null, time());
-
-    return $response;
-});
-
-
-/**
- * xml dom content type
- */
-$router->get('/xmltestdom', function (RequestInterface $request) {
-    $response = new XmlResponseDom();
-
-    if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        $response->setHTTPCode(Response::HTTP_OK);
-        $response->setContentType("text/xml");
-        $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid", time());
-
-        return $response;
-    }
-
-    $response->setHTTPCode(Response::HTTP_NOT_FOUND);
-    $response->setContentType("text/xml");
-    $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null, time());
+    $response->setCookie("uid", null);
 
     return $response;
 });

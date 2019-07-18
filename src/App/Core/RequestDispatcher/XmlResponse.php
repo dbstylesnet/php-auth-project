@@ -9,7 +9,7 @@ class XmlResponse extends Response
     protected $contentType = 'xml/text';
 
     /**
-     * Lazy ..
+     * Lazy 
      */
     private $encoder;
 
@@ -17,7 +17,7 @@ class XmlResponse extends Response
     {
         $encoder = $this->getEncoder();
 
-        parent::setContent($encoder->encode($responseContent, XmlEncoder::FORMAT));
+        return parent::setContent($encoder->encode($responseContent, XmlEncoder::FORMAT));
     }
 
     /**
