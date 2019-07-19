@@ -4,16 +4,19 @@ namespace App\Authentication\Controller;
 
 use App\Core\RequestDispatcher\BaseController;
 use App\Core\RequestDispatcher\Response;
+use App\Core\RequestDispatcher\RequestInterface;
 
 class AuthentificationController extends BaseController
 {
-    public function index()
+    public function index(RequestInterface $request)
     {
-        // return $this->response()
-        //  ->setContent($this->renderTempalte('/templates/auth/login.inc.php'), []);
+        $name = $request->getQueryParam("name") ?: 'Stranger';
 
-        return $this->xmlResponse()
-            ->setContent("Hello in Auth")
-            ->setCookie("uid", null, time());
+        return $this->response()
+            ->setContent(
+                $this->renderTemplate('/auth/login.inc.php', [
+                    "name" => $name,
+                ])
+            );
     }
 }

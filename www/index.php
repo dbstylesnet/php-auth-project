@@ -9,8 +9,6 @@ use App\Core\RequestDispatcher\JsonResponse;
 use App\Core\RequestDispatcher\XmlResponse;
 use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
-// use App\Core\RequestDispatcher\BaseController;
-use App\Authentication\Controller\BaseController;
 use App\Authentication\Controller\AuthentificationController;
 
 $request = Request::createFromGlobals();
@@ -46,16 +44,11 @@ $router->get('/jsontest', function (RequestInterface $request) {
     $response = new JsonResponse();
 
     if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        // $response->setHTTPCode(Response::HTTP_OK);
-        // $response->setContentType("application/json");
         $response->setContent("Hello " . $request->getQueryParam("user"));
         $response->setCookie("uid", "someid");
         $response->setHeader("Status", Response::HTTP_OK);
         $response->setHeader("traceid", 12312312321); 
         $response->setHeader("Content-type", "application/json charset=utf-8"); 
-        // header("Content-type: {$this->contentType}; charset=utf-8");       
-        // header("Status: {$this->httpCode}");
-        // header("Content-type: {$this->contentType}; charset=utf-8");
 
         return $response;
     }

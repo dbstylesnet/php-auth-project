@@ -26,11 +26,7 @@ class BaseController
 
     public function renderTemplate(string $pathToTemplate, array $bindings = [])
     {
-        // $view = new View($pathToTemplate);
-        // return $view->render($bindings);
-
-        // DO IT
-        // inside render
-        // foreach ($bindings as $key => $value) { $this->$key = $value; }
+        $view = new View($pathToTemplate);
+        return $view->render($bindings);
     }
 }

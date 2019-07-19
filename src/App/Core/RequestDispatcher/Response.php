@@ -74,7 +74,6 @@ class Response implements ResponseInterface
         return $this;
     }
 
-    //
     public function send()
     {
         foreach ($this->cookies as $name => [$value, $time]) {
@@ -86,9 +85,8 @@ class Response implements ResponseInterface
 
         foreach ($this->headers as $name => $value) {
             header("$name: $value");
-        }        
-        //setheaders($response->headers);
-
+        }
+        
         print $this->content;
     }      
 }
