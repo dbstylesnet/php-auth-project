@@ -4,6 +4,9 @@ namespace App\Geometry;
 
 class Circle implements ShapeInterface
 {
+    const NAME = 'Circle';
+    const PI = M_PI;
+    
     /**
      * @var float
      */
@@ -13,9 +16,6 @@ class Circle implements ShapeInterface
      * @var Point
      */
     private $center;
-
-
-    const PI = 3.14;
 
     public function __construct(float $radius, Point $locationPoint)
     {
@@ -28,7 +28,7 @@ class Circle implements ShapeInterface
      */
     public function getName(): string
     {
-        return 'Circle';
+        return SELF::NAME;
     }
 
     /**
@@ -54,5 +54,15 @@ class Circle implements ShapeInterface
     {
         return 2 * SELF::PI * $this->radius;
     }
+
+    public function getCenter(): Point
+    {
+        return $this->center;
+    }
+
+    public function getRadius(): float
+    {
+        return $this->radius;
+    }    
 
 }

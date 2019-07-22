@@ -3,6 +3,7 @@
 namespace AppTest\Geometry;
 
 use App\Geometry\Rectangle;
+use App\Geometry\Point;
 use PHPUnit\Framework\TestCase;
 
 class RectangleTest extends TestCase
@@ -21,7 +22,7 @@ class RectangleTest extends TestCase
         $p3 = new Point(2,7);
         $p4 = new Point(4,4);        
         $r2 = new Rectangle($p3, $p4); 
-        $this->assertEquals(12, $r2->getArea());
+        $this->assertEquals(6, $r2->getArea());
     }
 
     public function testGetPerimeter()

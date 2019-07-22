@@ -4,6 +4,8 @@ namespace App\Geometry;
 
 class Rectangle implements ShapeInterface
 {
+    const NAME = 'Rectangle';
+
     /**
      * @var Point
      */
@@ -13,20 +15,37 @@ class Rectangle implements ShapeInterface
      * @var Point
      */
     private $rightBottom;
-
    
+    /**
+     * @var Point
+     */
+    private $center;
+
+    /**
+     * @var Point
+     */
+    private $leftBottom;
+
+    /**
+     * @var Point
+     */
+    private $rightTop;
+
     public function __construct(Point $leftTop, Point $rightBottom)
     {
         $this->leftTop = $leftTop;
         $this->rightBottom = $rightBottom;
-    }
+        $this->leftBottom = new Point(($this->getLeftTop()->getX()), ($this->getRightBottom()->getY()));
+        $this->rightTop = new Point(($this->getRightBottom()->getX()), ($this->getLeftTop()->getY()));
+        $this->center = new Point(($this->leftTop->getX() + $this->rightBottom->getX()) / 2, ($this->leftTop->getY() + $this->rightBottom->getY()) / 2);
+     }
 
     /**
      * @return string
      */
     public function getName(): string 
     {
-        return 'Rectangle';
+        return SELF::NAME;
     }
 
     /**
@@ -34,7 +53,7 @@ class Rectangle implements ShapeInterface
      */
     public function getWidth(): float
     {
-        return $leftTop->getX() - $rightBottom->getX();
+        return $this->rightBottom->getX() - $this->leftTop->getX();
     }
 
     /**
@@ -42,7 +61,7 @@ class Rectangle implements ShapeInterface
      */
     public function getHeight(): float
     {
-        return $leftTop->getY() - $rightBottom->getY();
+        return $this->leftTop->getY() - $this->rightBottom->getY();
     }
 
     /**
@@ -50,7 +69,7 @@ class Rectangle implements ShapeInterface
      */
     public function getArea(): float
     {
-        return getWidth() * getHeight();
+        return $this->getWidth() * $this->getHeight();
     }
     
     /**
@@ -58,7 +77,7 @@ class Rectangle implements ShapeInterface
      */
     public function getPerimeter(): float
     {
-        return 2 * (getWidth() + getHeight());
+        return 2 * ($this->getWidth() + $this->getHeight());
     }    
 
     /**
@@ -67,7 +86,32 @@ class Rectangle implements ShapeInterface
     public function getDiagonal(): float
     {
         return sqrt(
-            pow(getWidth(), 2) + pow(getHeight(), 2)
+            pow($this->getWidth(), 2) + pow($this->getHeight(), 2)
         );
+    }
+
+    public function getCenter(): Point
+    {
+        return $this->center;
+    }
+
+    public function getLeftTop(): Point
+    {
+        return $this->leftTop;
+    }
+
+    public function getRightTop(): Point
+    {
+        return $this->rightTop;
+    }
+
+    public function getLeftBottom(): Point
+    {
+        return $this->leftBottom;
+    }
+
+    public function getRightBottom(): Point
+    {
+        return $this->rightBottom;
     }
 }
