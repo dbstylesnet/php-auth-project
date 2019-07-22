@@ -16,6 +16,7 @@ class View
         ob_start();
 
         extract($bindings);
+
         include TEMPLATE_DIR . $this->pathToTemplate;
 
         $output = ob_get_contents();
