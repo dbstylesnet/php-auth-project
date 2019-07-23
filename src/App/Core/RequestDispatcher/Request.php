@@ -57,7 +57,7 @@ class Request implements RequestInterface
         return $this->requestMethod;
     }
 
-    public function getQuery(): string
+    public function getQuery(): array
     {
         return $this->query;
     }
@@ -87,7 +87,7 @@ class Request implements RequestInterface
         return $this->serverProtocol;
     }
 
-    public function getPost(): string
+    public function getPost(): array
     {
         return $this->post;
     }

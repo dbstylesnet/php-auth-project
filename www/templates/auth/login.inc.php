@@ -1,57 +1,27 @@
 <?php
-
-/**
- * Login form template
- */
-// CONST HEADER = TEMPLATE_DIR . "/auth/header.inc.php";
-CONST LOGIN_FORM = TEMPLATE_DIR . "/auth/login.form.php";
-// CONST FOOTER = TEMPLATE_DIR . "/auth/footer.inc.php";
-// $loginForm = SELF::LOGIN_FORM;
-
-$header = TEMPLATE_DIR . "/auth/header.inc.php";
-$loginForm = TEMPLATE_DIR . "/auth/login.form.inc.php";
-$footer = TEMPLATE_DIR . "/auth/footer.inc.php";
-
 /**
  * @var $name string
- */
-
- /**
  * @var $pageTitle string
- */
-
- /**
  * @var $description string
- */
-
- /**
  * @var $status string
- */
-
-  /**
  * @var $success string
- */
-
- /**
  * @var $denied string
  */
 
-
 ?>
 
-<html>
-    <?= include $header ?>
-    <body>
-        <div id="main-wrapper"> 
+<link rel="stylesheet" type="text/css" href="/static/auth/login.form.css">
 
-            <h2><?= $pageTitle ?></h2>
-            <div><?= $description ?></div>
+<div id="main-wrapper"> 
 
-            <!-- // include SELF::LOGIN_FORM  -->
+    <h2><?= $pageTitle ?></h2>
+    <div><?= $description ?></div>
 
-            <?= include $loginForm ?>
+    <div>Hello <?=$name?>, try to enrol</div>
 
-        </div>
-        <?= include $footer ?>
-    </body>
-</html>
+    <?= $this->render('/auth/login.form.inc.php', [
+        'errors' => []
+    ]) ?>
+
+</div>
+   

@@ -66,6 +66,11 @@ $authController = new AuthentificationController();
 
 $router->get('/auth', [$authController, 'index']);
 
+
+// $profileController = new AuthentificationController();
+
+// $router->get('/auth', [$profileController, 'index']);
+
 /**
  * xml content type
  */

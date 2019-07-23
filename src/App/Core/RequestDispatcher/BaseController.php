@@ -24,9 +24,43 @@ class BaseController
         return new JsonResponse();
     }
 
-    public function renderTemplate(string $pathToTemplate, array $bindings = [])
+    /**
+     * 
+     */
+    public function renderTemplate(string $pathToTemplate, array $bindings = []): ResponseInterface
     {
-        $view = new View($pathToTemplate);
-        return $view->render($bindings);
+        return (new Response())
+            ->setContent($this->renderTemplateWithLayout($pathToTemplate, $bindings));
+    }
+
+    /**
+     * TODO
+     */
+    public function redirect($url): ResponseInterface
+    {
+        // TODO with header
+        // $response = $this->response();
+        // $response->setHeader("Location", ...)
+        //$response->setHttpS
+    }
+
+    /**
+     * 
+     */
+    private function renderTemplateWithLayout(string $pathToTemplate, array $bindings = [])
+    {
+        ob_start();
+
+        include TEMPLATE_DIR . '/layout/header.inc.php';
+
+        $view = new View();
+        print $view->render($pathToTemplate, $bindings);
+
+        include TEMPLATE_DIR . '/layout/footer.inc.php';
+
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        return $output;
     }
 }

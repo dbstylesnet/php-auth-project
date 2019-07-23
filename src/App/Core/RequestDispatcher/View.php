@@ -4,28 +4,26 @@ namespace App\Core\RequestDispatcher;
 
 class View 
 {
-    protected $pathToTemplate = null;
-
-    public function __construct(string $pathToTemplate) 
-    {
-        $this->pathToTemplate = $pathToTemplate;
-    }
-
-    public function render(array $bindings)
+    public function render($path, array $bindings)
     {
         ob_start();
 
         extract($bindings);
 
-        include TEMPLATE_DIR . $this->pathToTemplate;
+        include TEMPLATE_DIR . $path;
 
         $output = ob_get_contents();
         ob_end_clean();
         return $output;
     }
 
-    public function sanitize($string)
+    public function includeCSS($path)
     {
-        # code...
+        // collect all css links and render it inside footer
+    }
+
+    public function includeJS($path)
+    {
+        // the same as 
     }
 }
