@@ -26,6 +26,6 @@ class AuthentificationController extends BaseController
             // return $this->renderTemplate('/auth..., ['errors' => 'Please specify the username....])
         //}
 
-        
+
     }
 }

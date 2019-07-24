@@ -34,14 +34,15 @@ class BaseController
     }
 
     /**
-     * TODO
+     * $param url 
+     * redirect url
      */
     public function redirect($url): ResponseInterface
     {
-        // TODO with header
-        // $response = $this->response();
-        // $response->setHeader("Location", ...)
-        //$response->setHttpS
+        $response = $this->response();
+        $response->setHeader("Location", $url);
+        $response->setHTTPCode(Response::HTTP_MOVED);  
+        return $response;
     }
 
     /**

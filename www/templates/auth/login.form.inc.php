@@ -1,5 +1,5 @@
-<?php
-?>
+<? $this->includeCSS('/static/auth/login.form.css'); ?>
+
 <form class="modal-content animate" action="/action_page.php">
     <div class="imgcontainer">
       <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">

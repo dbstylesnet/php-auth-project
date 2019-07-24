@@ -1,6 +1,5 @@
-<?php
-?>
-    <footer>
+
+    <footer class='footer'>
         Copyright 2019
     </footer>
 </body>

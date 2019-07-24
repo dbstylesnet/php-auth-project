@@ -5,6 +5,7 @@ namespace App\Core\RequestDispatcher;
 class Response implements ResponseInterface
 {
     const HTTP_OK = 200;
+    const HTTP_MOVED = 301;    
     const HTTP_NOT_FOUND = 404;
     const HTTP_INTERNAL_ERROR = 500;
 

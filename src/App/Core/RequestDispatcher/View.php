@@ -19,11 +19,11 @@ class View
 
     public function includeCSS($path)
     {
-        // collect all css links and render it inside footer
+        printf('<link rel="stylesheet" type="text/css" href="%s">', $path);
     }
 
     public function includeJS($path)
     {
-        // the same as 
+        printf('<script type="text/javascript" href="%s" defer="defer"/>', $path);
     }
 }
