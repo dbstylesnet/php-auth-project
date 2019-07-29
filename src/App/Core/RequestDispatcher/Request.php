@@ -62,7 +62,7 @@ class Request implements RequestInterface
         return $this->query;
     }
 
-    public function getCookie(): string
+    public function getCookie(): array
     {
         return $this->cookie;
     }

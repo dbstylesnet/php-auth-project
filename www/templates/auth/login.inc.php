@@ -6,6 +6,9 @@
  * @var $status string
  * @var $success string
  * @var $denied string
+ * @var $error string 
+ * @var $username string
+ * @var $password string
  */
 
 ?>
@@ -20,9 +23,17 @@
 
     <div>Hello <?=$name?>, try to enrol</div>
 
+
     <?= $this->render('/auth/login.form.inc.php', [
-        'errors' => ['404' => 'not found']
+        'error' => $error,
+        'username' => $username
     ]) ?>
+
+
+    <?php if(!(empty($username) && empty($username))): ?>
+        <div>Provided <?=$username?></div><br>
+        <div>Privided <?=$password?></div>
+    <?php endif; ?>
 
 </div>
    

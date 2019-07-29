@@ -20,12 +20,14 @@ $router = new Router($request);
 $authController = new AuthentificationController();
 
 $router->get('/auth', [$authController, 'index']);
-$router->post('/auth', [$authController, 'enroll']);
+$router->post('/login', [$authController, 'login']);
+$router->post('/signin', [$authController, 'signin']);
 
 // profile routes
 
 $profileController = new ProfileController();
 $router->get('/profile', [$profileController, 'index']);
+$router->get('/mockprofile', [$profileController, 'mockIndex']);
 
 
 $router->resolve();

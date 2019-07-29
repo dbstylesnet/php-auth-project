@@ -41,7 +41,6 @@ class BaseController
     {
         $response = $this->response();
         $response->setHeader("Location", $url);
-        $response->setHTTPCode(Response::HTTP_MOVED);  
         return $response;
     }
 
