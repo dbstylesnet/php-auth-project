@@ -77,15 +77,26 @@ class Response implements ResponseInterface
 
     public function send()
     {
-        foreach ($this->cookies as $name => [$value, $time]) {
-            setcookie($name, $value, $time + time());
+        // header("Content-type: {$this->contentType}; charset=utf-8");
+
+        $hasLocation = false;
+        
+        foreach ($this->headers as $name => $value) {
+            header("$name: $value");
+            if ($name === 'Location') {
+                $hasLocation = true;
+            }
+            
+        }
+
+        if ($hasLocation) {
+            exit(0);
         }
 
         header("Status: {$this->httpCode}");
-        // header("Content-type: {$this->contentType}; charset=utf-8");
 
-        foreach ($this->headers as $name => $value) {
-            header("$name: $value");
+        foreach ($this->cookies as $name => [$value, $time]) {
+            setcookie($name, $value, $time + time());
         }
         
         print $this->content;

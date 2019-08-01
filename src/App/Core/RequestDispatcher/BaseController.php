@@ -41,6 +41,7 @@ class BaseController
     {
         $response = $this->response();
         $response->setHeader("Location", $url);
+
         return $response;
     }
 

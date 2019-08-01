@@ -24,6 +24,6 @@ class View
 
     public function includeJS($path)
     {
-        printf('<script type="text/javascript" href="%s" defer="defer"/>', $path);
+        printf('<script type="text/javascript" src="%s" defer="defer"/></script>', $path);
     }
 }

@@ -22,6 +22,7 @@ class AuthentificationController extends BaseController
     public function login(RequestInterface $request)
     {
         $form = $request->getPost();
+
         if (empty($form['username'])) {
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Please specify the username']);
         }
@@ -34,11 +35,24 @@ class AuthentificationController extends BaseController
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password is too short', 'username' => $form['username']]);
         }
 
-        return $this->redirect("/mockprofile");
+        return $this->redirect("/auth");
     }
 
-    public function signIn(RequestInterface $request)
+    public function signin(RequestInterface $request)
     {
-        // TODO
+        $form = $request->getPost();
+        if (empty($form['username'])) {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Please specify the username']);
+        }
+
+        if (strlen($form['username']) < 3 ) {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username is too short']);
+        }
+
+        if (strlen($form['password']) < 6) {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password is too short', 'username' => $form['username']]);
+        }
+
+        return $this->redirect("/mockprofile");
     }
 }

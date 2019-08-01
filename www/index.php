@@ -18,7 +18,6 @@ $router = new Router($request);
 // auth routes
 
 $authController = new AuthentificationController();
-
 $router->get('/auth', [$authController, 'index']);
 $router->post('/login', [$authController, 'login']);
 $router->post('/signin', [$authController, 'signin']);
