@@ -7,6 +7,8 @@ use App\Core\RequestDispatcher\RequestInterface;
 
 class AuthentificationController extends BaseController
 {
+    // 
+
     public function index(RequestInterface $request)
     {
         return $this->renderTemplate('/auth/login.inc.php', [ 
@@ -52,6 +54,10 @@ class AuthentificationController extends BaseController
         if (strlen($form['password']) < 6) {
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password is too short', 'username' => $form['username']]);
         }
+
+        // $this->userRepository->findByLogin( ... login from form)
+
+        // this->userRepository->save()
 
         return $this->redirect("/mockprofile");
     }

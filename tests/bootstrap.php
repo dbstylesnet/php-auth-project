@@ -11,12 +11,12 @@ require __DIR__ . '/../vendor/autoload.php';
 //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
 //$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
 
-$paths = array();
-// database configuration parameters
-$conn = array(
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/db.sqlite',
-);
+// $paths = array();
+// // database configuration parameters
+// $conn = array(
+//     'driver' => 'pdo_sqlite',
+//     'path' => __DIR__ . '/db.sqlite',
+// );
 
-// obtaining the entity manager
-$entityManager = EntityManager::create($conn, $config);
+// // obtaining the entity manager
+// $entityManager = EntityManager::create($conn, $config);

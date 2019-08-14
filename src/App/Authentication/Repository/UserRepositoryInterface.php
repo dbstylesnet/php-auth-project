@@ -6,7 +6,7 @@ use App\Authentication\UserInterface;
 
 /**
  * Domain and data mapping layer
- * @see http://design-pattern.ru/patterns/repository.html
+ * @see https://www.martinfowler.com/eaaCatalog/repository.html
  *
  * Interface UserRepositoryInterface
  * @package App\Identification\Repository
@@ -14,7 +14,7 @@ use App\Authentication\UserInterface;
 interface UserRepositoryInterface
 {
 	/**
-	 * Метод ищет пользователя по индентификатору, возвращает UserInterface если пользователь существует, иначе null
+	 * Method finds a user by this given id and returns it. Otherwise returns null
 	 *
 	 * @param int $id
 	 * @return UserInterface|null
@@ -22,7 +22,7 @@ interface UserRepositoryInterface
 	public function findById(int $id): ?UserInterface;
 
 	/**
-	 * Метод ищет пользователя по login, возвращает UserInterface если пользователь существует, иначе null
+	 * Method finds a user by this given login and returns it. Otherwise returns null
 	 *
 	 * @param string $login
 	 * @return UserInterface|null
@@ -30,9 +30,10 @@ interface UserRepositoryInterface
 	public function findByLogin(string $login): ?UserInterface;
 
 	/**
-	 * Метод сохраняет пользоваля в хранилище
+	 * Method saves the given user into storage
 	 *
 	 * @param UserInterface $user
+	 * @return UserInterface
 	 */
-	public function save(UserInterface $user);
+	public function save(UserInterface $user): UserInterface;
 }
