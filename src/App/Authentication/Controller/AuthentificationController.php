@@ -4,10 +4,16 @@ namespace App\Authentication\Controller;
 
 use App\Core\RequestDispatcher\BaseController;
 use App\Core\RequestDispatcher\RequestInterface;
+use App\Authentication\UserRepositoryInterface;
 
 class AuthentificationController extends BaseController
 {
-    // 
+    private $userRepository;
+
+    public function __construct(UserReporsitoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function index(RequestInterface $request)
     {
@@ -56,6 +62,12 @@ class AuthentificationController extends BaseController
         }
 
         // $this->userRepository->findByLogin( ... login from form)
+        if (empty($this->userRepository->findByLogin($form['username']))) {
+            $this->userRepository->save($this->userRepository->findByLogin($form['username'])); 
+        } else {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username already exists']);
+        };
+        
 
         // this->userRepository->save()
 
