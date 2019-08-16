@@ -4,13 +4,14 @@ namespace App\Authentication\Controller;
 
 use App\Core\RequestDispatcher\BaseController;
 use App\Core\RequestDispatcher\RequestInterface;
-use App\Authentication\UserRepositoryInterface;
+use App\Authentication\Repository\UserRepositoryInterface;
+use App\Authentication\User;
 
 class AuthentificationController extends BaseController
 {
     private $userRepository;
 
-    public function __construct(UserReporsitoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }
@@ -61,15 +62,19 @@ class AuthentificationController extends BaseController
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password is too short', 'username' => $form['username']]);
         }
 
-        // $this->userRepository->findByLogin( ... login from form)
-        if (empty($this->userRepository->findByLogin($form['username']))) {
-            $this->userRepository->save($this->userRepository->findByLogin($form['username'])); 
+        $user = $this->userRepository->findByLogin($form['username']);
+
+        if (empty($user)) {
+            $user = new User(
+                $form['username'],
+                $form['password'],
+                NULL,
+                NULL
+            );
+            $this->userRepository->save($user); 
         } else {
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username already exists']);
-        };
-        
-
-        // this->userRepository->save()
+        }
 
         return $this->redirect("/mockprofile");
     }

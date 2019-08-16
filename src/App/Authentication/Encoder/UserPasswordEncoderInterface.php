@@ -19,3 +19,10 @@ interface UserPasswordEncoderInterface
 	 */
 	public function encodePassword(string $rawPassword, ?string $salt = null): string;
 }
+
+// receive passowrd, salt , salt can generated from backend, null as salt
+
+// class that receives that raw pass and returns hash
+
+// hash functions in php - read about different hashes and implement passworrd interface.
+

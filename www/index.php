@@ -11,13 +11,18 @@ use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
 use App\Authentication\Controller\AuthentificationController;
 use App\Personal\Controller\ProfileController;
+use App\Authentication\Repository\UserRepository;
+use App\Authentication\Repository\UserRepositoryInterface;
+use App\Core\Db\ConnectionFactory;
 
 $request = Request::createFromGlobals();
 $router = new Router($request);
 
 // auth routes
 
-$authController = new AuthentificationController();
+$connectionFactory = new ConnectionFactory("mysql", "app", "app", "app");
+$userRepository = new UserRepository($connectionFactory);
+$authController = new AuthentificationController($userRepository);
 $router->get('/auth', [$authController, 'index']);
 $router->post('/login', [$authController, 'login']);
 $router->post('/signin', [$authController, 'signin']);
