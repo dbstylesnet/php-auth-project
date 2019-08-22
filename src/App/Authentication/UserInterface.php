@@ -3,7 +3,7 @@
 namespace App\Authentication;
 
 /**
- * Интерфейс зарегистрированного пользователя
+ * Registered User Interface
  *
  * Interface UserInterface
  * @package App\Authentication

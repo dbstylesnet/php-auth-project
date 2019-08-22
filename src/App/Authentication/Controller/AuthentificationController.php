@@ -6,19 +6,29 @@ use App\Core\RequestDispatcher\BaseController;
 use App\Core\RequestDispatcher\RequestInterface;
 use App\Authentication\Repository\UserRepositoryInterface;
 use App\Authentication\User;
+use App\Authentication\Encoder\UserPasswordEncoderInterface;
+use App\Authentication\Service\AuthenticationServiceInterface;
 
 class AuthentificationController extends BaseController
 {
     private $userRepository;
+    private $userPasswordEncoder;
+    private $authService;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(
+        UserRepositoryInterface $userRepository, 
+        UserPasswordEncoderInterface $userPassword,
+        AuthenticationServiceInterface $authService
+    )
     {
         $this->userRepository = $userRepository;
+        $this->userPasswordEncoder = $userPassword;
+        $this->authService = $authService;
     }
 
     public function index(RequestInterface $request)
     {
-        return $this->renderTemplate('/auth/login.inc.php', [ 
+         return $this->renderTemplate('/auth/login.inc.php', [ 
             "name" => $request->getQueryParam("name") ?: "Unknown", 
             "pageTitle" => "Authentication",
             "description" => "Provide details in order to login",
@@ -44,7 +54,20 @@ class AuthentificationController extends BaseController
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password is too short', 'username' => $form['username']]);
         }
 
-        return $this->redirect("/auth");
+        $user = $this->userRepository->findByLogin($form['username']);
+
+        if (empty($user)) {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password or username is incorrect', 'username' => $form['username']]);
+        }
+
+        $hash = $this->userPasswordEncoder->encodePassword($form['password'], $user->getSalt()); 
+        if (!hash_equals($hash, $user->getPassword())) {
+            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password or username is incorrect', 'username' => $form['username']]);
+        }
+    
+        $credentials = $this->authService->generateCredentials($user);
+
+        return $this->redirect("/profile")->setCookie('auth', $credentials);
     }
 
     public function signin(RequestInterface $request)
@@ -65,17 +88,22 @@ class AuthentificationController extends BaseController
         $user = $this->userRepository->findByLogin($form['username']);
 
         if (empty($user)) {
+            $salt = time();
+            $hashedPassword = $this->userPasswordEncoder->encodePassword($form['password'], $salt);
+
             $user = new User(
                 $form['username'],
-                $form['password'],
-                NULL,
+                $hashedPassword,
+                $salt,
                 NULL
             );
             $this->userRepository->save($user); 
-        } else {
-            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username already exists']);
-        }
 
-        return $this->redirect("/mockprofile");
+            $credentials = $this->authService->generateCredentials($user);
+            // save this cookie
+            return $this->redirect("/profile")->setCookie('auth', $credentials);
+        }
+        
+        return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username already exists']);
     }
 }

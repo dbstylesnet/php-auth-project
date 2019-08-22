@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class CircleTest extends TestCase
 {
+    private const TOLERANCE = 0.001;
 
     public function testGetName()
     {
@@ -28,14 +29,16 @@ class CircleTest extends TestCase
     {
         $p3 = new Point(0,0);
         $c3 = new Circle(4, $p3);
-        $this->assertEquals(50.24, $c3->getArea());
+        
+        $this->assertTrue(abs(50.265 - $c3->getArea()) < self::TOLERANCE);
     }
 
     public function testGetPerimeter()
     {
         $p4 = new Point(1,2);
         $c4 = new Circle(5, $p4);
-        $this->assertEquals(31.4, $c4->getPerimeter());
+        // $this->assertEquals(31.4, $c4->getPerimeter());
+        $this->assertTrue(abs(31.415 - $c4->getPerimeter()) < self::TOLERANCE);
     }
 
     public function testCCinIntersect()

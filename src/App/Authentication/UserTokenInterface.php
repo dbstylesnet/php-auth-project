@@ -3,7 +3,7 @@
 namespace App\Authentication;
 
 /**
- * Данный класс хранит информацию о пользователе и участвует в процессах аутентификации.
+ * This class stores information about the user and participates in authentication processes.
  *
  * Interface UserTokenInterface
  * @package App\Authentication
@@ -11,14 +11,14 @@ namespace App\Authentication;
 interface UserTokenInterface
 {
 	/**
-	 * Метод возвращает соответствующего юзера, если он есть.
+	 * The method returns the corresponding user, if any.
 	 *
 	 * @return UserInterface|null
 	 */
 	public function getUser(): ?UserInterface;
 
 	/**
-	 * Метод возращает true, если запрос пришел от анонима, иначе false
+	 * The method returns true if the request came from an anonym, otherwise false
 	 *
 	 * @return bool
 	 */

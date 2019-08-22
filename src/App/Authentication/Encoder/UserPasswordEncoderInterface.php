@@ -3,7 +3,7 @@
 namespace App\Authentication\Encoder;
 
 /**
- * Интерфейс предоставляет услуги по шифрованию пароля
+ * Interface provides password encryption services
  *
  * Interface UserPasswordEncoderInterface
  * @package App\Authentication\Encoder
@@ -11,7 +11,7 @@ namespace App\Authentication\Encoder;
 interface UserPasswordEncoderInterface
 {
 	/**
-	 * Метод принимает чистый пароль и соль (опциональна) и возвращает в зашифрованном виде.
+	 * The method accepts a clean password and salt (optional) and returns in encrypted form.
 	 *
 	 * @param string $rawPassword
 	 * @param null|string $salt
@@ -19,6 +19,9 @@ interface UserPasswordEncoderInterface
 	 */
 	public function encodePassword(string $rawPassword, ?string $salt = null): string;
 }
+
+
+
 
 // receive passowrd, salt , salt can generated from backend, null as salt
 

@@ -64,4 +64,15 @@ class BaseController
 
         return $output;
     }
+
+    // protected function getAuthToken()
+    // the body of the function will be the next
+    // $this->authService->authenticate($request->getCookie('auth'))
+
+    // $credentials = $request->getCookie('auth');
+    // $userToken = $this->authService->authentificate($credentials);
+
+    // if ($userToken->isAnonymous()) {
+        
+    // }
 }

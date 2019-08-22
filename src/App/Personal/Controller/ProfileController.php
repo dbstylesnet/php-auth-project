@@ -9,6 +9,7 @@ class ProfileController extends BaseController
 {
     public function index(RequestInterface $request)
     {
+        // $this->getAuthToken  make greeting!
         return $this->redirect("/auth");
     }
 
