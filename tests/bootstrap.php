@@ -7,6 +7,8 @@ error_reporting(E_ALL | E_STRICT);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+define('TEMPLATE_DIR', __DIR__ . '/../www/templates');
+
 // or if you prefer yaml or XML
 //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
 //$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);

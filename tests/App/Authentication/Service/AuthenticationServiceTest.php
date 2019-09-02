@@ -21,7 +21,7 @@ class AuthenticationServiceTest extends TestCase
 
 		$repository = $this->createMock(UserRepositoryInterface::class);
 		$repository
-			->expects($this->any()) // replace with $this->once() - why?
+			->expects($this->any()) 
 			->method('findById')
 			->with(2)
 			->willReturn(null);

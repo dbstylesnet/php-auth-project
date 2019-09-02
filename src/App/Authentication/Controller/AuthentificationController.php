@@ -43,7 +43,9 @@ class AuthentificationController extends BaseController
         $form = $request->getPost();
 
         if (empty($form['username'])) {
-            return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Please specify the username']);
+            return $this->renderTemplate('/auth/login.inc.php', [
+                'error' => 'Please specify the username',
+            ]);
         }
 
         if (strlen($form['username']) < 3) {
@@ -100,10 +102,11 @@ class AuthentificationController extends BaseController
             $this->userRepository->save($user); 
 
             $credentials = $this->authService->generateCredentials($user);
+            //in test authService mock becouse we dont access to database
             // save this cookie
             return $this->redirect("/profile")->setCookie('auth', $credentials);
         }
-        
+
         return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Username already exists']);
     }
 }

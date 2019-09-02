@@ -4,6 +4,8 @@ namespace App\Core\RequestDispatcher;
 
 class BaseController
 {
+    private $authService;
+
     public function request(): RequestInterface
     {
         return $this->request;
@@ -29,8 +31,28 @@ class BaseController
      */
     public function renderTemplate(string $pathToTemplate, array $bindings = []): ResponseInterface
     {
+        $callable = function () use ($pathToTemplate, $bindings) {
+            return $this->renderTemplateWithLayout($pathToTemplate, $bindings);
+        };
+
         return (new Response())
-            ->setContent($this->renderTemplateWithLayout($pathToTemplate, $bindings));
+            ->setContent(
+                new class($callable) {
+                    private $callback;
+
+                    public function __construct($callback) {
+                        $this->callback = $callback;
+                    }
+
+                    public function __toString() {
+                        try {
+                            return call_user_func($this->callback);
+                        } catch (\Exception $e) {
+                            // 
+                        }
+                    }
+                }
+            );
     }
 
     /**
@@ -65,14 +87,16 @@ class BaseController
         return $output;
     }
 
-    // protected function getAuthToken()
+    protected function getAuthToken()
+    {
     // the body of the function will be the next
-    // $this->authService->authenticate($request->getCookie('auth'))
+        // $this->authService->authenticate($request->getCookie('auth'));
 
-    // $credentials = $request->getCookie('auth');
-    // $userToken = $this->authService->authentificate($credentials);
+        // $credentials = $request->getCookie('auth');
+        // $userToken = $this->authService->authenticate($credentials);
 
-    // if ($userToken->isAnonymous()) {
-        
-    // }
+        // if ($userToken->isAnonymous()) {
+            
+        // }
+    }
 }
