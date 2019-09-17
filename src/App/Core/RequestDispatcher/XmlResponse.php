@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -8,9 +7,6 @@ class XmlResponse extends Response
 {   
     protected $contentType = 'xml/text';
 
-    /**
-     * Lazy 
-     */
     private $encoder;
 
     public function setContent($responseContent)

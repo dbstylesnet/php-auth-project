@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -9,7 +8,6 @@ class JsonResponse extends Response
     protected $contentType = 'application/json';
 
     private $encoder;
-
     
     public function setContent($responseContent)
     {

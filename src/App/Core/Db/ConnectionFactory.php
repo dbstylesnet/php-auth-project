@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\Db;
 
 use \Doctrine\DBAL\Configuration;
@@ -30,15 +29,10 @@ class ConnectionFactory
         $this->dbname = $dbname;
     }
 
-    /**
-     * 
-     */
     public function getConnection(): Connection
     {
         if ($this->connection === null) {
             $config = new Configuration();
-
-            // config->setLoggert
             $connectionParams = [
               'dbname' => $this->dbname,
               'user' => $this->user,
@@ -46,7 +40,6 @@ class ConnectionFactory
               'host' => $this->host,
               'driver' => 'mysqli',
             ];
-
             $this->connection = DriverManager::getConnection($connectionParams, $config);
         }
 

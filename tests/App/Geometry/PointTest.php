@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Geometry;
 
 use App\Geometry\Point;
@@ -11,6 +10,7 @@ class PointTest extends TestCase
     {
         $p1 = new Point(3, 4);
         $p2 = new Point(0, 0);
+        
         $this->assertEquals(5, $p1->distance($p2));
     }
 }

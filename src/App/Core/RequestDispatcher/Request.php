@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Request implements RequestInterface
@@ -90,6 +89,5 @@ class Request implements RequestInterface
     public function getPost(): array
     {
         return $this->post;
-    }
-    
+    }    
 }

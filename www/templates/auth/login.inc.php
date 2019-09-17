@@ -10,30 +10,21 @@
  * @var $username string
  * @var $password string
  */
-
 ?>
 
-<!-- <link rel="stylesheet" type="text/css" href="/static/auth/login.form.css"> -->
 <? $this->includeCSS('/static/auth/login.wrapper.form.css'); ?>
 
 <div id="main-wrapper"> 
-
     <h2 class="page-title"><?= $pageTitle ?></h2>
     <div><?= $description ?></div>
-
     <div>Hello <?=$name?>, try to enrol</div>
-
-
-    <?= $this->render('/auth/login.form.inc.php', [
+    <? $this->render('/auth/login.form.inc.php', [
         'error' => $error,
         'username' => $username
     ]) ?>
-
-
-    <?php if(!(empty($username) && empty($username))): ?>
+    <? if(!(empty($username) && empty($username))): ?>
         <div>Provided <?=$username?></div><br>
         <div>Privided <?=$password?></div>
-    <?php endif; ?>
-
+    <? endif; ?>
 </div>
    

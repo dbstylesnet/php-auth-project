@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication;
 
 use App\Authentication\UserInterface;
@@ -30,14 +29,12 @@ class User implements UserInterface
      */
     private $salt;
 
-
     public function __construct(
         string $login, 
         string $password, 
         ?string $salt,
         ?int $id 
-    )
-    {
+    ) {
         $this->login = $login;
         $this->password = $password;
         $this->salt = $salt;

@@ -10,9 +10,7 @@
       <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
       </div>
-
       <div class="container">
-
         <? if(!empty($error)) { ?>
             <div>
               <?= $error ?>
@@ -20,22 +18,16 @@
         <?} ?>    
         <label for="username"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>
-
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
-          
         <button type="submit">Log In</button>
       </div>
-
   </form>
-
   <form id="signinform" class="modal-content animate signin" action="/signin" method='post'>
       <div class="imgcontainer">
         <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
       </div>
-
       <div class="container">
-
         <? if(!empty($error)) { ?>
             <div>
               <?= $error ?>
@@ -43,16 +35,11 @@
         <?} ?>    
         <label for="username"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>
-
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
-          
         <label for="password"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" required>
-          
-
         <button id="signinbtn" type="submit">Sign In</button>
       </div>
-
   </form>
 </div>

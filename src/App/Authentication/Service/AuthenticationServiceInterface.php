@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Service;
 
 use App\Authentication\UserTokenInterface;

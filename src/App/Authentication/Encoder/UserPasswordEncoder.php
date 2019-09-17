@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Encoder;
 
 class UserPasswordEncoder implements UserPasswordEncoderInterface
@@ -9,6 +8,3 @@ class UserPasswordEncoder implements UserPasswordEncoderInterface
         return password_hash($rawPassword,  PASSWORD_BCRYPT, ['salt' => $salt]);
     }
 }
-
-//in order to verify:
-//$isPasswordCorrect = password_verify($rawPassword, $existingHashFromDb);

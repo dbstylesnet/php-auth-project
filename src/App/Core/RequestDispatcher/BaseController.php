@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class BaseController
@@ -26,11 +25,10 @@ class BaseController
         return new JsonResponse();
     }
 
-    /**
-     * 
-     */
-    public function renderTemplate(string $pathToTemplate, array $bindings = []): ResponseInterface
-    {
+    public function renderTemplate(
+        string $pathToTemplate,
+        array $bindings = []
+    ): ResponseInterface {
         $callable = function () use ($pathToTemplate, $bindings) {
             return $this->renderTemplateWithLayout($pathToTemplate, $bindings);
         };
@@ -67,20 +65,13 @@ class BaseController
         return $response;
     }
 
-    /**
-     * 
-     */
     private function renderTemplateWithLayout(string $pathToTemplate, array $bindings = [])
     {
         ob_start();
-
         include TEMPLATE_DIR . '/layout/header.inc.php';
-
         $view = new View();
         print $view->render($pathToTemplate, $bindings);
-
         include TEMPLATE_DIR . '/layout/footer.inc.php';
-
         $output = ob_get_contents();
         ob_end_clean();
 
@@ -89,7 +80,8 @@ class BaseController
 
     protected function getAuthToken()
     {
-    // the body of the function will be the next
+    // to do:
+        // the body of the function will be the next
         // $this->authService->authenticate($request->getCookie('auth'));
 
         // $credentials = $request->getCookie('auth');

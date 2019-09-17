@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Geometry;
 
 use App\Geometry\Rectangle;
@@ -10,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class CircleWithCircleIntersectorTest extends TestCase
 {
-
     private $intersector;
 
     protected function setUp()

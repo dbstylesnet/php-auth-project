@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Response implements ResponseInterface
@@ -8,8 +7,6 @@ class Response implements ResponseInterface
     const HTTP_MOVED = 301;    
     const HTTP_NOT_FOUND = 404;
     const HTTP_INTERNAL_ERROR = 500;
-
-
 
     private $httpCode;
 
@@ -29,8 +26,7 @@ class Response implements ResponseInterface
         $cookies = [],
         $headers = [],
         $responseContent = null
-    )
-    {
+    ) {
         $this->httpCode = $httpCode;
         $this->contentType = $contentType;
         $this->cookies = $cookies;
@@ -56,13 +52,6 @@ class Response implements ResponseInterface
         return $this;
     }
 
-    // public function setHeader(string $name, $value)
-    // {
-        
-    //     header($name.': '.$value);
-    //     return $this;
-    // }
-
     public function setHeader(string $name, ?string $value)
     {
         $this->headers[$name] = $value;
@@ -77,16 +66,13 @@ class Response implements ResponseInterface
 
     public function send()
     {
-        // header("Content-type: {$this->contentType}; charset=utf-8");
-
         $hasLocation = false;
         
         foreach ($this->headers as $name => $value) {
             header("$name: $value");
             if ($name === 'Location') {
                 $hasLocation = true;
-            }
-            
+            }       
         }
 
         if ($hasLocation) {

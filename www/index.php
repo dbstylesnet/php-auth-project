@@ -1,5 +1,4 @@
 <?php
-
 require_once './init.php';
 
 use App\Core\RequestDispatcher\Router;
@@ -20,7 +19,6 @@ $request = Request::createFromGlobals();
 $router = new Router($request);
 
 // auth routes
-
 $connectionFactory = new ConnectionFactory("mysql", "app", "app", "app");
 $userRepository = new UserRepository($connectionFactory);
 $userPasswordEncoder = new UserPasswordEncoder();
@@ -31,10 +29,7 @@ $router->post('/login', [$authController, 'login']);
 $router->post('/signin', [$authController, 'signin']);
 
 // profile routes
-
 $profileController = new ProfileController();
 $router->get('/profile', [$profileController, 'index']);
 $router->get('/mockprofile', [$profileController, 'mockIndex']);
-
-
 $router->resolve();

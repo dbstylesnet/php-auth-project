@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Geometry;
 
 use App\Geometry\Circle;
@@ -15,6 +14,7 @@ class CircleTest extends TestCase
     {
         $p1 = new Point(1,1);
         $c1 = new Circle(3, $p1);
+
         $this->assertEquals('Circle', $c1->getName());
     }    
 
@@ -22,6 +22,7 @@ class CircleTest extends TestCase
     {
         $p2 = new Point(2,2);
         $c2 = new Circle(3, $p2);
+
         $this->assertEquals(6, $c2->getDiameter());
     }
 
@@ -37,7 +38,7 @@ class CircleTest extends TestCase
     {
         $p4 = new Point(1,2);
         $c4 = new Circle(5, $p4);
-        // $this->assertEquals(31.4, $c4->getPerimeter());
+
         $this->assertTrue(abs(31.415 - $c4->getPerimeter()) < self::TOLERANCE);
     }
 
@@ -48,7 +49,7 @@ class CircleTest extends TestCase
         $p6 = new Point(1,1);
         $c6 = new Circle(3, $p5); 
         $intersector = new CircleWithCircleIntersector();       
+        
         $this->assertEquals(true, $intersector->isIntersect($c5, $c6));
     }
-
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Geometry;
 
 class Intersector implements IntersectorInterface
@@ -28,7 +27,7 @@ class Intersector implements IntersectorInterface
                 $result = $intersectors->isIntersect($a, $b);
                 $isSupported = true;
             } catch (\RuntimeException $e) {
-
+                //
             }
         }
 
@@ -38,5 +37,4 @@ class Intersector implements IntersectorInterface
         
         return $result;
     }    
-
 }

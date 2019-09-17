@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Repository;
 
 use App\Authentication\UserInterface;

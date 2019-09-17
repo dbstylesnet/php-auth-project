@@ -1,5 +1,4 @@
 <?php
-
 use App\Core\Db\ConnectionFactory;
 use App\Authentication\Repository\UserRepository;
 use App\Authentication\User;
