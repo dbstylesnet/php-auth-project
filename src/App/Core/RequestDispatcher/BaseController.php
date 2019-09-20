@@ -84,7 +84,7 @@ class BaseController
         $userToken = $this->authService->authenticate($credentials);
 
         if ($userToken->isAnonymous()) {
-            return 'Anonymous';
+            return null;
         }
 
         return $userToken;
