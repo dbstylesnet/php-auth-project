@@ -88,6 +88,6 @@ class BaseController
             return 'Anonymous';
         }
 
-        return $userToken;
+        return $userToken->getUser()->getLogin();
     }
 }
