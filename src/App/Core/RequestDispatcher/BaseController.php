@@ -80,8 +80,7 @@ class BaseController
 
     protected function getUserToken()
     {
-        $credentials = $request->getCookie('auth');
-        $userToken = $this->authService->authenticate($credentials);
+        $userToken = $this->authService->authenticate($request->getCookie('auth'));
 
         return $userToken;
     }
