@@ -83,10 +83,6 @@ class BaseController
         $credentials = $request->getCookie('auth');
         $userToken = $this->authService->authenticate($credentials);
 
-        if ($userToken->isAnonymous()) {
-            return null;
-        }
-
         return $userToken;
     }
 }
