@@ -80,15 +80,14 @@ class BaseController
 
     protected function getAuthToken()
     {
-    // to do:
-        // the body of the function will be the next
-        // $this->authService->authenticate($request->getCookie('auth'));
+        $this->authService->authenticate($request->getCookie('auth'));
+        $credentials = $request->getCookie('auth');
+        $userToken = $this->authService->authenticate($credentials);
 
-        // $credentials = $request->getCookie('auth');
-        // $userToken = $this->authService->authenticate($credentials);
+        if ($userToken->isAnonymous()) {
+            return 'Anonymous';
+        }
 
-        // if ($userToken->isAnonymous()) {
-            
-        // }
+        return $userToken;
     }
 }
