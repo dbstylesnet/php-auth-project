@@ -78,7 +78,7 @@ class BaseController
         return $output;
     }
 
-    protected function getAuthToken()
+    protected function getUserToken()
     {
         $this->authService->authenticate($request->getCookie('auth'));
         $credentials = $request->getCookie('auth');
@@ -88,6 +88,6 @@ class BaseController
             return 'Anonymous';
         }
 
-        return $userToken->getUser()->getLogin();
+        return $userToken;
     }
 }
