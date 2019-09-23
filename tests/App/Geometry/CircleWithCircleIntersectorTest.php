@@ -13,7 +13,7 @@ class CircleWithCircleIntersectorTest extends TestCase
 
     protected function setUp()
     {
-        $this->intersector = new CircleWithCircleIntersector();    
+        $this->intersector = new CircleWithCircleIntersector();
     }
 
     /**

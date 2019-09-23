@@ -9,7 +9,7 @@ use App\Core\RequestDispatcher\ResponseInterface;
 use App\Core\RequestDispatcher\Request;
 use App\Authentication\User;
 use App\Authentication\UserToken;
-use App\Authentication\Controller\AuthentificationController;
+use App\Authentication\Controller\AuthenticationController;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticationControllerTest extends TestCase
@@ -39,9 +39,9 @@ class AuthenticationControllerTest extends TestCase
             ->method('findByLogin')
             ->with('mike_spike')
             ->willReturn($user);
-e
+
         $authService = new AuthenticationService($userRepoMock);
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $userRepoMock, 
             $userPassEncMock,
             $authService
@@ -115,7 +115,7 @@ e
             ]
         );
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $this->createMock(UserRepositoryInterface::class),
             $this->createMock(UserPasswordEncoderInterface::class),
             $this->createMock(AuthenticationServiceInterface::class)
@@ -139,7 +139,7 @@ e
             ]
         );
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $this->createMock(UserRepositoryInterface::class),
             $this->createMock(UserPasswordEncoderInterface::class),
             $this->createMock(AuthenticationServiceInterface::class)
@@ -157,6 +157,7 @@ e
             2
         );
 
+        
         $credentials = '2_qwasd123qe';
 
         $userPassEncMock = $this->createMock(UserPasswordEncoderInterface::class);
@@ -194,7 +195,7 @@ e
             ->with('mike_spike')
             ->willReturn($user);
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $userRepoMock, 
             $userPassEncMock,
             $authServiceMock
@@ -216,7 +217,7 @@ e
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->expects($this->any())
             ->method('setCookie')
-            ->with([self::AUTHENTICATION, $credentials]);
+            ->with(['auth', $credentials]);
 
         $this->assertEquals('mike_spike', $user->getLogin());
         $this->assertEquals(false, empty($user->getLogin()));
