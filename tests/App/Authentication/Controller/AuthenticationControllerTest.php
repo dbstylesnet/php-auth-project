@@ -216,7 +216,7 @@ e
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->expects($this->any())
             ->method('setCookie')
-            ->with(['auth', $credentials]);
+            ->with([self::AUTHENTICATION, $credentials]);
 
         $this->assertEquals('mike_spike', $user->getLogin());
         $this->assertEquals(false, empty($user->getLogin()));

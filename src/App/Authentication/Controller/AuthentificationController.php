@@ -84,7 +84,7 @@ class AuthentificationController extends BaseController
     
         $credentials = $this->authService->generateCredentials($user);
 
-        return $this->redirect("/profile")->setCookie('auth', $credentials);
+        return $this->redirect("/profile")->setCookie(self::AUTHENTICATION, $credentials);
     }
 
     public function signin(RequestInterface $request)
@@ -127,7 +127,7 @@ class AuthentificationController extends BaseController
             $this->userRepository->save($user); 
             $credentials = $this->authService->generateCredentials($user);
 
-            return $this->redirect("/profile")->setCookie('auth', $credentials);
+            return $this->redirect("/profile")->setCookie(self::AUTHENTICATION, $credentials);
         }
 
         return $this->renderTemplate('/auth/login.inc.php',[

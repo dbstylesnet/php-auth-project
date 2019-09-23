@@ -3,6 +3,8 @@ namespace App\Core\RequestDispatcher;
 
 class BaseController
 {
+    const AUTHENTICATION = 'auth';
+
     private $authService;
 
     public function request(): RequestInterface
@@ -80,6 +82,6 @@ class BaseController
 
     protected function getUserToken()
     {
-        return $this->authService->authenticate($request->getCookie('auth'));
+        return $this->authService->authenticate($request->getCookie(self::AUTHENTICATION));
     }
 }
