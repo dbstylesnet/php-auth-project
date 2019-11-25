@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\Db;
 
 use \Doctrine\DBAL\Configuration;
@@ -9,15 +8,10 @@ use \Doctrine\DBAL\Connection;
 class ConnectionFactory
 {
     private $host;
-
     private $user;
-    
-    private $password;
-    
+    private $password;    
     private $dbname;
-
     private $connection;
-
     public function __construct(
         string $host,
         string $user,
@@ -30,15 +24,11 @@ class ConnectionFactory
         $this->dbname = $dbname;
     }
 
-    /**
-     * 
-     */
     public function getConnection(): Connection
     {
         if ($this->connection === null) {
             $config = new Configuration();
 
-            // config->setLoggert
             $connectionParams = [
               'dbname' => $this->dbname,
               'user' => $this->user,
