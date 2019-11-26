@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Service;
 
 use App\Authentication\Service\AuthenticationServiceInterface;
@@ -12,12 +11,12 @@ use App\Authentication\Repository\UserRepositoryInterface;
 class AuthenticationService implements AuthenticationServiceInterface
 {
     private $userRepo;
-    private $userPasswordEncoder;
 
+    private $userPasswordEncoder;
 
     public function __construct(
         UserRepositoryInterface $userRepoInterface
-    ){
+    ) {
         $this->userRepo = $userRepoInterface;
     }
 
@@ -25,7 +24,6 @@ class AuthenticationService implements AuthenticationServiceInterface
         $credArray = explode('_', $credentials);
         $id = $credArray[0];
         $hash = $credArray[1];
-
         $user = $this->userRepo->findById($id);
 
         if (!$user) {
@@ -37,13 +35,6 @@ class AuthenticationService implements AuthenticationServiceInterface
         }
 
         return new UserToken($user);
-
-        // return null;
-
-        // $id, $hash =  explode($credentials)
-        // ask repository to fetch the user with the given id
-        // check that hash from credin are similar to users hash
-        // create user token (here user can be null| null | $user)
     }
 
     public function generateCredentials(UserInterface $user) {
