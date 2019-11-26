@@ -131,9 +131,7 @@ class UserRepository implements UserRepositoryInterface
             try {
                 $sqlBuilder->execute();
             } catch(UniqueConstraintViolationException $e) {
-                //throw new DuplicateUserException($e); TODO it
                 throw new DuplicateUserException('User with this login already exists');
-                // throw $e;
             }
 
             return $this->findById($connection->lastInsertId());
