@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Router
 {
     private $request;
+    
     private $supportedHttpMethods = array(
         "GET",
         "POST",
@@ -20,7 +20,6 @@ class Router
     // private $routes;
 
     private $currentRoute;
-
 
     public function __construct(RequestInterface $request)
     {
@@ -45,7 +44,6 @@ class Router
      */
     private function formatRoute($route)
     {
-        // profile?name=alex&b=123
         $route = parse_url($route)['path'];
         $result = rtrim($route, '/');
 
@@ -84,10 +82,7 @@ class Router
             return;
         }
 
-        // echo call_user_func_array($method, array($this->request));
-
         $response = call_user_func_array($method, array($this->request));
-
         $response->send();
     }
 }
