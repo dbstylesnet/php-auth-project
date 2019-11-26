@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Repository;
 
 use App\Authentication\UserInterface;
@@ -47,7 +46,6 @@ class UserRepository implements UserRepositoryInterface
             $data['id']
         );
     }
-
 
 	/**
 	 * Method finds a user by this given login and returns it. Otherwise returns null
@@ -108,17 +106,13 @@ class UserRepository implements UserRepositoryInterface
             
                 if ($rowsAffected === 0) {
                     if (empty($updated)) {
-                        // throw new custom exception (UserDoesNotExist) and remove below
-                        // throw new \RuntimeException("User does not exist");
                         throw new NoUserException('User does not exist');
                     }
                 }
 
                 return $updated;
             } catch(UniqueConstraintViolationException $e) {
-                //throw new DuplicateUserException($e); TODO it
                 throw new DuplicateUserException('User with this login already exists');
-                // throw $e;
             }
         } else {
             $sqlBuilder
