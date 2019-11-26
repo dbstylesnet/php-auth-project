@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Request implements RequestInterface
