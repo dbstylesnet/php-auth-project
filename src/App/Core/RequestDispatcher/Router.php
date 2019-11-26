@@ -14,11 +14,6 @@ class Router
 
     private $route;
 
-    /**
-     * @var array;
-     */
-    // private $routes;
-
     private $currentRoute;
 
     public function __construct(RequestInterface $request)
@@ -57,8 +52,6 @@ class Router
 
     private function invalidMethodHandler()
     {
-        //sends a raw HTTP header to a client.
-        //header(string,replace,http_response_code) 
         header("{$this->request->getServerProtocol()} 405 Method Not allowed");
     }
 
