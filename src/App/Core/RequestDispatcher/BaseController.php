@@ -1,11 +1,18 @@
 <?php
+
 namespace App\Core\RequestDispatcher;
+
+use App\Authentication\Service\AuthenticationServiceInterface;
+use App\Authentication\UserTokenInterface;
 
 class BaseController
 {
     const AUTHENTICATION = 'auth';
-        
-    private $authService;
+
+    /**
+     * @var AuthenticationServiceInterface
+     */
+    protected $authService;
 
     public function request(): RequestInterface
     {
@@ -77,7 +84,7 @@ class BaseController
         return $output;
     }
 
-    protected function getUserToken()
+    protected function getUserToken(Request $request): UserTokenInterface
     {
         return $this->authService->authenticate($request->getCookie(self::AUTHENTICATION));
     }

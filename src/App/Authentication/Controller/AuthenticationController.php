@@ -9,18 +9,17 @@ use App\Authentication\User;
 use App\Authentication\Encoder\UserPasswordEncoderInterface;
 use App\Authentication\Service\AuthenticationServiceInterface;
 
-class AuthentificationController extends BaseController
+class AuthenticationController extends BaseController
 {
     private $userRepository;
     private $userPasswordEncoder;
-    private $authService;
+    protected $authService;
 
     public function __construct(
         UserRepositoryInterface $userRepository, 
         UserPasswordEncoderInterface $userPassword,
         AuthenticationServiceInterface $authService
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
         $this->userPasswordEncoder = $userPassword;
         $this->authService = $authService;
@@ -62,8 +61,7 @@ class AuthentificationController extends BaseController
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password or username is incorrect', 'username' => $form['username']]);
         }
 
-        $hash = $this->userPasswordEncoder->encodePassword($form['password'], $user->getSalt()); 
-        if (!hash_equals($hash, $user->getPassword())) {
+        if (!password_verify($form['password'], $user->getPassword())) {
             return $this->renderTemplate('/auth/login.inc.php', ['error' => 'Password or username is incorrect', 'username' => $form['username']]);
         }
     

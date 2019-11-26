@@ -8,7 +8,7 @@ use App\Core\RequestDispatcher\Router;
 use App\Core\RequestDispatcher\Response;
 use PHPUnit\Framework\TestCase;
 // use App\Core\RequestDispatcher\RequestInterface;
-use App\Authentication\Controller\AuthentificationController;
+use App\Authentication\Controller\AuthenticationController;
 use App\Personal\Controller\ProfileController;
 use App\Authentication\Repository\UserRepository;
 use App\Authentication\Encoder\UserPasswordEncoder;

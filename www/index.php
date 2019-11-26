@@ -9,7 +9,7 @@ use App\Core\RequestDispatcher\JsonResponse;
 use App\Core\RequestDispatcher\XmlResponse;
 use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
-use App\Authentication\Controller\AuthentificationController;
+use App\Authentication\Controller\AuthenticationController;
 use App\Personal\Controller\ProfileController;
 use App\Authentication\Repository\UserRepository;
 use App\Authentication\Encoder\UserPasswordEncoder;
@@ -25,14 +25,14 @@ $connectionFactory = new ConnectionFactory("mysql", "app", "app", "app");
 $userRepository = new UserRepository($connectionFactory);
 $userPasswordEncoder = new UserPasswordEncoder();
 $authService = new AuthenticationService($userRepository);
-$authController = new AuthentificationController($userRepository, $userPasswordEncoder, $authService);
+$authController = new AuthenticationController($userRepository, $userPasswordEncoder, $authService);
 $router->get('/auth', [$authController, 'index']);
 $router->post('/login', [$authController, 'login']);
 $router->post('/signin', [$authController, 'signin']);
 
 // profile routes
 
-$profileController = new ProfileController();
+$profileController = new ProfileController($authService);
 $router->get('/profile', [$profileController, 'index']);
 $router->get('/mockprofile', [$profileController, 'mockIndex']);
 

@@ -10,7 +10,7 @@ use App\Core\RequestDispatcher\ResponseInterface;
 use App\Core\RequestDispatcher\Request;
 use App\Authentication\User;
 use App\Authentication\UserToken;
-use App\Authentication\Controller\AuthentificationController;
+use App\Authentication\Controller\AuthenticationController;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticationControllerTest extends TestCase
@@ -53,7 +53,7 @@ class AuthenticationControllerTest extends TestCase
         $authService = new AuthenticationService($userRepoMock);
 
         //create real authController
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $userRepoMock, 
             $userPassEncMock,
             $authService
@@ -150,7 +150,7 @@ class AuthenticationControllerTest extends TestCase
             ]
         );
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $this->createMock(UserRepositoryInterface::class),
             $this->createMock(UserPasswordEncoderInterface::class),
             $this->createMock(AuthenticationServiceInterface::class)
@@ -176,7 +176,7 @@ class AuthenticationControllerTest extends TestCase
             ]
         );
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $this->createMock(UserRepositoryInterface::class),
             $this->createMock(UserPasswordEncoderInterface::class),
             $this->createMock(AuthenticationServiceInterface::class)
@@ -248,7 +248,7 @@ class AuthenticationControllerTest extends TestCase
 
 
 
-        $authContr = new AuthentificationController(
+        $authContr = new AuthenticationController(
             $userRepoMock, 
             $userPassEncMock,
             $authServiceMock
