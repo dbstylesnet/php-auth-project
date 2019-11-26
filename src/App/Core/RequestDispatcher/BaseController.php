@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class BaseController
@@ -26,9 +25,6 @@ class BaseController
         return new JsonResponse();
     }
 
-    /**
-     * 
-     */
     public function renderTemplate(string $pathToTemplate, array $bindings = []): ResponseInterface
     {
         $callable = function () use ($pathToTemplate, $bindings) {
@@ -67,9 +63,6 @@ class BaseController
         return $response;
     }
 
-    /**
-     * 
-     */
     private function renderTemplateWithLayout(string $pathToTemplate, array $bindings = [])
     {
         ob_start();
