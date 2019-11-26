@@ -33,7 +33,6 @@ class ConnectionFactory
     {
         if ($this->connection === null) {
             $config = new Configuration();
-
             $connectionParams = [
               'dbname' => $this->dbname,
               'user' => $this->user,
