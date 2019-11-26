@@ -8,10 +8,15 @@ use \Doctrine\DBAL\Connection;
 class ConnectionFactory
 {
     private $host;
+
     private $user;
+
     private $password;    
+
     private $dbname;
+
     private $connection;
+    
     public function __construct(
         string $host,
         string $user,
