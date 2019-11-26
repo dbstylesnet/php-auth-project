@@ -3,6 +3,8 @@ namespace App\Core\RequestDispatcher;
 
 class BaseController
 {
+    const AUTHENTICATION = 'auth';
+        
     private $authService;
 
     public function request(): RequestInterface
@@ -66,30 +68,17 @@ class BaseController
     private function renderTemplateWithLayout(string $pathToTemplate, array $bindings = [])
     {
         ob_start();
-
         include TEMPLATE_DIR . '/layout/header.inc.php';
-
         $view = new View();
         print $view->render($pathToTemplate, $bindings);
-
         include TEMPLATE_DIR . '/layout/footer.inc.php';
-
         $output = ob_get_contents();
         ob_end_clean();
-
         return $output;
     }
 
-    protected function getAuthToken()
+    protected function getUserToken()
     {
-    // the body of the function will be the next
-        // $this->authService->authenticate($request->getCookie('auth'));
-
-        // $credentials = $request->getCookie('auth');
-        // $userToken = $this->authService->authenticate($credentials);
-
-        // if ($userToken->isAnonymous()) {
-            
-        // }
+        return $this->authService->authenticate($request->getCookie(self::AUTHENTICATION));
     }
 }

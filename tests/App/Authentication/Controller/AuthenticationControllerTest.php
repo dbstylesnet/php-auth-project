@@ -272,7 +272,7 @@ class AuthenticationControllerTest extends TestCase
 
         $responseMock->expects($this->any())
             ->method('setCookie')
-            ->with(['auth', $credentials]);
+            ->with([self::AUTHENTICATION, $credentials]);
 
 
         $this->assertEquals('mike_spike', $user->getLogin());
