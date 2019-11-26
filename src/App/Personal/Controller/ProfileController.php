@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Personal\Controller;
 
 use App\Core\RequestDispatcher\BaseController;
@@ -9,7 +8,6 @@ class ProfileController extends BaseController
 {
     public function index(RequestInterface $request)
     {
-        // $this->getAuthToken  make greeting!
         return $this->redirect("/auth");
     }
 
