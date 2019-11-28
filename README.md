@@ -19,7 +19,7 @@ Installation:
 * Wait until all the image is installed, then open localhost: 8080 and if we see "Hello World", then everything is ok :)
 
 How to run tests?
-* docker exec -ti docker_php_1 bash - переходим в контейнер php
+* docker exec -ti docker_php_1 bash
 * vendor/bin/phpunit tests/
 
 How to close all containers?
