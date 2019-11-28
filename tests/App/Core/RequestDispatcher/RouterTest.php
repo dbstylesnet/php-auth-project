@@ -5,7 +5,14 @@ namespace AppTest\Core\RequestDispatcher;
 use App\Core\RequestDispatcher\Request;
 use App\Core\RequestDispatcher\RequestInterface;
 use App\Core\RequestDispatcher\Router;
+use App\Core\RequestDispatcher\Response;
 use PHPUnit\Framework\TestCase;
+// use App\Core\RequestDispatcher\RequestInterface;
+use App\Authentication\Controller\AuthenticationController;
+use App\Personal\Controller\ProfileController;
+use App\Authentication\Repository\UserRepository;
+use App\Authentication\Encoder\UserPasswordEncoder;
+use App\Authentication\Service\AuthenticationService;
 
 class RouterTest extends TestCase
 {
@@ -22,19 +29,31 @@ class RouterTest extends TestCase
         );
 
         $router = new Router($request);
-        $name = null;
 
-        $router->get('/sayhello', function(RequestInterface $request) use (&$name) {
-            $name = $request->getQueryParam('name');
-        });
+        $mockResponse = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['send'])
+            ->getMock();
+        
+        $mockResponse->expects($this->once())
+            ->method('send');
 
-        $router->get('/', function(RequestInterface $request) use (&$name) {
-            $name = 'should not be called';
-        });
+        $mockController = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['controllerMethod','otherMethod'])
+            ->getMock();
+
+        $mockController->expects($this->once())
+            ->method('controllerMethod')
+            ->with($request)
+            ->willReturn($mockResponse);
+
+        $mockController->expects($this->never())
+            ->method('otherMethod');
+
+        $router->get('/sayhello', [$mockController, 'controllerMethod']);
+
+        $router->get('/', [$mockController, 'otherMethod']);
 
         $router->resolve();
-
-        $this->assertEquals('alex', $name);
     }    
 
     public function testProfile()
@@ -49,7 +68,15 @@ class RouterTest extends TestCase
             []
         );
 
+
         $this->assertEquals('alex', $request->getQueryParam('name'));
+
+        $mockResponse = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['send'])
+            ->getMock();
+
+        $mockResponse->expects($this->once())
+            ->method('send');
 
         $mockProfileCall = $this->getMockBuilder(\stdClass::class)
             ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
@@ -57,7 +84,8 @@ class RouterTest extends TestCase
 
         $mockProfileCall->expects($this->once())
             ->method('shouldBeCalled')
-            ->with($request);
+            ->with($request)
+            ->willReturn($mockResponse);
 
         $mockProfileCall->expects($this->never())
             ->method('shouldNotBeCalled');
@@ -85,13 +113,21 @@ class RouterTest extends TestCase
 
         $this->assertEquals('alex', $request->getQueryParam('name'));
 
+        $responseMock = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['send'])
+            ->getMock();
+
+        $responseMock->expects($this->once())
+            ->method('send');
+
         $mockProfileCall = $this->getMockBuilder(\stdClass::class)
             ->setMethods(['shouldBeCalled', 'shouldNotBeCalled'])
             ->getMock();
 
         $mockProfileCall->expects($this->once())
             ->method('shouldBeCalled')
-            ->with($request);
+            ->with($request)
+            ->willReturn($responseMock);
 
         $mockProfileCall->expects($this->never())
             ->method('shouldNotBeCalled');
@@ -105,5 +141,38 @@ class RouterTest extends TestCase
         $router->resolve();
     }
 
+    public function testResponse()
+    {
+        $request = new Request(
+            'GET',
+            '/sayhello',
+            'https',
+            'mozilla',
+            [],
+            ['name' => 'alex'],
+            []
+        );
+
+        $responseMock = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['send'])
+            ->getMock();
+
+        $responseMock->expects($this->once())
+            ->method('send');
+
+        $mockController = $this->getMockBuilder(\stdClass::class)
+            ->setMethods(['controllerMethod'])
+            ->getMock();
+
+        $mockController->expects($this->once())
+            ->method('controllerMethod')
+            ->with($request)
+            ->willReturn($responseMock);
+
+        $router = new Router($request);
+        $router->get('/sayhello', [$mockController, 'controllerMethod']);        
+        
+        $router->resolve();
+    }    
 }
 

@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Router
 {
     private $request;
+    
     private $supportedHttpMethods = array(
         "GET",
         "POST",
@@ -14,13 +14,7 @@ class Router
 
     private $route;
 
-    /**
-     * @var array;
-     */
-    // private $routes;
-
     private $currentRoute;
-
 
     public function __construct(RequestInterface $request)
     {
@@ -45,7 +39,6 @@ class Router
      */
     private function formatRoute($route)
     {
-        // profile?name=alex&b=123
         $route = parse_url($route)['path'];
         $result = rtrim($route, '/');
 
@@ -59,8 +52,6 @@ class Router
 
     private function invalidMethodHandler()
     {
-        //sends a raw HTTP header to a client.
-        //header(string,replace,http_response_code) 
         header("{$this->request->getServerProtocol()} 405 Method Not allowed");
     }
 
@@ -77,17 +68,14 @@ class Router
         $methodDictionary = $this->{strtolower($this->request->getRequestMethod())};
         $formattedRoute = $this->formatRoute($this->request->getRequestUri());
         $method = $methodDictionary[$formattedRoute];
-
+ 
         if (is_null($method))
         {
             $this->defaultRequestHandler();
             return;
         }
 
-        // echo call_user_func_array($method, array($this->request));
-
         $response = call_user_func_array($method, array($this->request));
-
         $response->send();
     }
 }

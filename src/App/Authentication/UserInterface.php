@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Authentication;
 
 /**
- * Интерфейс зарегистрированного пользователя
+ * Registered User Interface
  *
  * Interface UserInterface
  * @package App\Authentication
@@ -11,28 +10,28 @@ namespace App\Authentication;
 interface UserInterface
 {
 	/**
-	 * Метод возвращает идентификационную информацию пользователя (первичный ключ в БД пользователей приложения)
+	 * Returns the id of the user
 	 *
 	 * @return int
 	 */
-	public function getId(): int;
+	public function getId(): ?int;
 
 	/**
-	 * Метод возвращает логин пользователя. Логин является уникальным свойством.
+	 * Returns the login
 	 *
 	 * @return string
 	 */
 	public function getLogin(): string;
 
 	/**
-	 * Метод возвращает пароль пользователя. Пароль возвращается в зашифрованном виде.
+	 * Returns the hash
 	 *
 	 * @return string
 	 */
 	public function getPassword(): string;
 
 	/**
-	 * Метод возвращает соль, которая участвовала при построении пароля
+	 * Returns the salt
 	 *
 	 * @return string|null
 	 */

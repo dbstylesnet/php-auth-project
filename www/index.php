@@ -9,100 +9,33 @@ use App\Core\RequestDispatcher\JsonResponse;
 use App\Core\RequestDispatcher\XmlResponse;
 use App\Core\RequestDispatcher\XmlResponseDom;
 use App\Core\RequestDispatcher\RequestInterface;
-use App\Authentication\Controller\AuthentificationController;
+use App\Authentication\Controller\AuthenticationController;
+use App\Personal\Controller\ProfileController;
+use App\Authentication\Repository\UserRepository;
+use App\Authentication\Encoder\UserPasswordEncoder;
+use App\Authentication\Service\AuthenticationService;
+use App\Core\Db\ConnectionFactory;
 
 $request = Request::createFromGlobals();
 $router = new Router($request);
 
+// auth routes
 
-/**
- * plain text content type
- */
-$router->get('/texttest', function (RequestInterface $request) {
-    $response = new Response();
-
-    if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        $response->setHTTPCode(Response::HTTP_OK);
-        $response->setContentType("text/html");
-        $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid", time());
-
-        return $response;
-    }
-
-    $response->setHTTPCode(Response::HTTP_NOT_FOUND);
-    $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null, 0);
-
-    return $response;
-});
-
-/**
- * json content type
- */
-$router->get('/jsontest', function (RequestInterface $request) {
-    $response = new JsonResponse();
-
-    if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid");
-        $response->setHeader("Status", Response::HTTP_OK);
-        $response->setHeader("traceid", 12312312321); 
-        $response->setHeader("Content-type", "application/json charset=utf-8"); 
-
-        return $response;
-    }
-
-    $response->setHTTPCode(Response::HTTP_NOT_FOUND);
-    $response->setContentType("application/json");
-    $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null);
-
-    return $response;
-});
-
-
-$authController = new AuthentificationController();
-
+$connectionFactory = new ConnectionFactory("mysql", "app", "app", "app");
+$userRepository = new UserRepository($connectionFactory);
+$userPasswordEncoder = new UserPasswordEncoder();
+$authService = new AuthenticationService($userRepository);
+$authController = new AuthenticationController($userRepository, $userPasswordEncoder, $authService);
 $router->get('/auth', [$authController, 'index']);
+$router->post('/login', [$authController, 'login']);
+$router->post('/signin', [$authController, 'signin']);
 
-/**
- * xml content type
- */
-$router->get('/xmltest', function (RequestInterface $request) {
-    $response = new XmlResponse();
+// profile routes
 
-    if (in_array($request->getQueryParam("user"), ['alex', 'kostya'])) {
-        $response->setHTTPCode(Response::HTTP_OK);
-        $response->setContentType("text/xml");
-        $response->setHeader("traceid", 12312312321); 
-        $response->setContent("Hello " . $request->getQueryParam("user"));
-        $response->setCookie("uid", "someid");
+$profileController = new ProfileController($authService);
+$router->get('/profile', [$profileController, 'index']);
+$router->get('/mockprofile', [$profileController, 'mockIndex']);
 
-        return $response;
-    }
-
-    $response->setHTTPCode(Response::HTTP_NOT_FOUND);
-    $response->setContentType("text/xml");
-    $response->setContent("We don't know " . $request->getQueryParam("user"));
-    $response->setCookie("uid", null);
-
-    return $response;
-});
-
-
-$router->get('/sayhello', function (RequestInterface $request) {
-    $response = new XmlResponse();
-
-    $response->setHTTPCode(Response::HTTP_OK);
-
-    $response->setContent([
-        'name' => $request->getQueryParam('name'),
-        'surname' => "Unknown"
-    ]);
-
-    return $response;
-});
-
-
+ob_start();
 $router->resolve();
+ob_end_flush();

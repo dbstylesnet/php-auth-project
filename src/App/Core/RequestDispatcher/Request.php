@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 class Request implements RequestInterface
@@ -57,12 +56,12 @@ class Request implements RequestInterface
         return $this->requestMethod;
     }
 
-    public function getQuery(): string
+    public function getQuery(): array
     {
         return $this->query;
     }
 
-    public function getCookie(): string
+    public function getCookie(): array
     {
         return $this->cookie;
     }
@@ -87,9 +86,8 @@ class Request implements RequestInterface
         return $this->serverProtocol;
     }
 
-    public function getPost(): string
+    public function getPost(): array
     {
         return $this->post;
     }
-    
 }

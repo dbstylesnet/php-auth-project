@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Authentication\Service;
 
 use App\Authentication\UserTokenInterface;
 use App\Authentication\UserInterface;
 
 /**
- * Контракт представляет услуги по аутентификации и идентификации клиентов.
- *
- * Пример аутентификации:
+* The contract provides authentication and customer identification services. 
+ * Authentication Example:
  * $authService = new AuthenticationService(..);
  * $userToken = $authService->authenticate($request->getCookie('auth_cookie'));
  *
@@ -20,7 +18,7 @@ use App\Authentication\UserInterface;
  *
  * ###
  *
- * Пример проставления аутентификационной информации:
+ * Example of affixing authentication information 
  * $response->setCookie('auth_cookie', $authService->generateCredentials($user));
  *
  * Interface AuthenticationServiceInterface
@@ -29,15 +27,14 @@ use App\Authentication\UserInterface;
 interface AuthenticationServiceInterface
 {
 	/**
-	 * Метод аутентифицирует пользователя на основании authentication credentials запроса
-	 *
+	 * The method authenticates the user based on the authentication credentials of the request	
 	 * @param mixed $credentials
 	 * @return UserTokenInterface
 	 */
 	public function authenticate($credentials);
 
 	/**
-	 * Метод генерирует authentication credentials
+	 * Method generates authentication credentials
 	 *
 	 * @param UserInterface $user
 	 * @return mixed
