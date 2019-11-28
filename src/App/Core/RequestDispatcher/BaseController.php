@@ -14,6 +14,12 @@ class BaseController
      */
     protected $authService;
 
+    public function __construct(
+        AuthenticationServiceInterface $authService
+    ) {
+        $this->authService = $authService;
+    }
+
     public function request(): RequestInterface
     {
         return $this->request;
@@ -67,6 +73,7 @@ class BaseController
     public function redirect($url): ResponseInterface
     {
         $response = $this->response();
+        $response->setHTTPCode(301);
         $response->setHeader("Location", $url);
 
         return $response;
@@ -86,6 +93,9 @@ class BaseController
 
     protected function getUserToken(Request $request): UserTokenInterface
     {
-        return $this->authService->authenticate($request->getCookie(self::AUTHENTICATION));
+        $cookie = $request->getCookie();
+        $auth = $cookie[self::AUTHENTICATION];
+
+        return $this->authService->authenticate($auth);
     }
 }

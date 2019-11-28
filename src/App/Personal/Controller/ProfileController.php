@@ -7,12 +7,9 @@ use App\Core\RequestDispatcher\RequestInterface;
 
 class ProfileController extends BaseController
 {
-    protected $authService;
-
-    public function __construct(
-        AuthenticationServiceInterface $authService
-    ) {
-        $this->authService = $authService;
+    public function __construct(AuthenticationServiceInterface $authService)
+    {
+        parent::__construct($authService);
     }
 
     public function index(RequestInterface $request)

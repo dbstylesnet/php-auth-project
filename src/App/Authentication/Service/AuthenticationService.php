@@ -21,6 +21,10 @@ class AuthenticationService implements AuthenticationServiceInterface
     }
 
     public function authenticate($credentials) {
+        if (empty($credentials)) {
+            return new UserToken(null);
+        }
+
         $credArray = explode('_', $credentials);
         $id = $credArray[0];
         $hash = $credArray[1];

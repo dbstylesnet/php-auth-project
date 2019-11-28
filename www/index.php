@@ -36,5 +36,6 @@ $profileController = new ProfileController($authService);
 $router->get('/profile', [$profileController, 'index']);
 $router->get('/mockprofile', [$profileController, 'mockIndex']);
 
-
+ob_start();
 $router->resolve();
+ob_end_flush();

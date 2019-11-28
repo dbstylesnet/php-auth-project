@@ -75,16 +75,16 @@ class Response implements ResponseInterface
             }
         }
 
-        if ($hasLocation) {
-            exit(0);
-        }
-
         header("Status: {$this->httpCode}");
 
         foreach ($this->cookies as $name => [$value, $time]) {
             setcookie($name, $value, $time + time());
         }
-        
+
+        if ($hasLocation) {
+            exit(0);
+        }
+
         print $this->content;
     }      
 }

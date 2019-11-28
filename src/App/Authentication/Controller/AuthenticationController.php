@@ -13,16 +13,16 @@ class AuthenticationController extends BaseController
 {
     private $userRepository;
     private $userPasswordEncoder;
-    protected $authService;
+
 
     public function __construct(
         UserRepositoryInterface $userRepository, 
         UserPasswordEncoderInterface $userPassword,
         AuthenticationServiceInterface $authService
     ) {
+        parent::__construct($authService);
         $this->userRepository = $userRepository;
         $this->userPasswordEncoder = $userPassword;
-        $this->authService = $authService;
     }
 
     public function index(RequestInterface $request)
@@ -67,7 +67,7 @@ class AuthenticationController extends BaseController
     
         $credentials = $this->authService->generateCredentials($user);
 
-        return $this->redirect("/profile")->setCookie('auth', $credentials);
+        return $this->redirect("/profile")->setCookie(self::AUTHENTICATION, $credentials);
     }
 
     public function signin(RequestInterface $request)

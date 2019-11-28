@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
