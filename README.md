@@ -1,5 +1,4 @@
 Skeleton PHP Authentication Application
-(please pull 'last-working-branch' instead of master)
 
 The app should allow to create users via UI, log in and carry on using application, being logged in. 
 
