@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\App\Authentication\Service;
 
 use App\Authentication\Repository\UserRepositoryInterface;
@@ -74,7 +73,4 @@ class AuthenticationServiceTest extends TestCase
 		$userToken = $service->authenticate($credentials);
 		$this->assertFalse($userToken->isAnonymous());
 	}
-	
 }
-
-

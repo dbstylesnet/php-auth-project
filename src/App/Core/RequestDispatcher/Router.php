@@ -4,7 +4,7 @@ namespace App\Core\RequestDispatcher;
 class Router
 {
     private $request;
-    
+
     private $supportedHttpMethods = array(
         "GET",
         "POST",

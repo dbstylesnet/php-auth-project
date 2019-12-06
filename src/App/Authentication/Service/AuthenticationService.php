@@ -45,8 +45,3 @@ class AuthenticationService implements AuthenticationServiceInterface
         return $user->getId() . '_' . $user->getPassword();
     }
 }
-// create token, create test for authetication, create mock of UserRepository
-// -> this is id, get me the user
-// to test AuthenticationService
-// if there is -> this is user otherwise anonymous
-// we are using interface because we want to describe the behaviour of the app

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Geometry;
 
 class Intersector implements IntersectorInterface
@@ -38,5 +37,4 @@ class Intersector implements IntersectorInterface
         
         return $result;
     }    
-
 }

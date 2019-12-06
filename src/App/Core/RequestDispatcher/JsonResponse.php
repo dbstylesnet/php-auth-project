@@ -8,7 +8,6 @@ class JsonResponse extends Response
     protected $contentType = 'application/json';
 
     private $encoder;
-
     
     public function setContent($responseContent)
     {

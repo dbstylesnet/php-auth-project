@@ -41,33 +41,21 @@ class User implements UserInterface
         $this->id = $id;
     }
 
-	/**
-	 * @inheritDoc
-	 */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-	/**
-	 * @inheritDoc
-	 */
     public function getLogin(): string
     {
         return $this->login;
     }
 
-	/**
-	 * @inheritDoc
-	 */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-	/**
-	 * @inheritDoc
-	 */
     public function getSalt(): ?string
     {
         return $this->salt;

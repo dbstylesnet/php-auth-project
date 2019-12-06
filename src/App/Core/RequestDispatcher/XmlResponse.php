@@ -7,9 +7,6 @@ class XmlResponse extends Response
 {   
     protected $contentType = 'xml/text';
 
-    /**
-     * Lazy 
-     */
     private $encoder;
 
     public function setContent($responseContent)

@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Core\RequestDispatcher;
 
 use App\Core\RequestDispatcher\Request;
@@ -7,7 +6,6 @@ use App\Core\RequestDispatcher\RequestInterface;
 use App\Core\RequestDispatcher\Router;
 use App\Core\RequestDispatcher\Response;
 use PHPUnit\Framework\TestCase;
-// use App\Core\RequestDispatcher\RequestInterface;
 use App\Authentication\Controller\AuthenticationController;
 use App\Personal\Controller\ProfileController;
 use App\Authentication\Repository\UserRepository;
@@ -67,7 +65,6 @@ class RouterTest extends TestCase
             ['name' => 'alex'],
             []
         );
-
 
         $this->assertEquals('alex', $request->getQueryParam('name'));
 
@@ -175,4 +172,3 @@ class RouterTest extends TestCase
         $router->resolve();
     }    
 }
-
