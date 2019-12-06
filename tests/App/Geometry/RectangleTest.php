@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Geometry;
 
 use App\Geometry\Rectangle;
@@ -40,8 +39,4 @@ class RectangleTest extends TestCase
         $r3 = new Rectangle($p5, $p6);
         $this->assertEquals(5, $r3->getDiagonal());
     }
-
-
-
-    // isIntersect($a ShapeInterface, $b ShapeInterface): bool
 }

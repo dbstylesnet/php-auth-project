@@ -48,7 +48,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
 	/**
-	 * Method finds a user by this given login and returns it. Otherwise returns null
+	 * Method finds a user by this given login and returns it
 	 *
 	 * @param string $login
 	 * @return UserInterface|null

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Geometry;
 
 class RectangleWithCircleIntersector implements IntersectorInterface
@@ -44,5 +43,4 @@ class RectangleWithCircleIntersector implements IntersectorInterface
 
         return $cornerDist <= pow($b->getRadius(), 2);
     }
-    
 }

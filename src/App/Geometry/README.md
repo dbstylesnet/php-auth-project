@@ -1,5 +1,4 @@
 ## Task number 1
-Purpose:
 Learn the language of php, phpunit, OOP.
 
 ### Description

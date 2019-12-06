@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\Geometry;
 
 use App\Geometry\Circle;
@@ -50,5 +49,4 @@ class CircleTest extends TestCase
         $intersector = new CircleWithCircleIntersector();       
         $this->assertEquals(true, $intersector->isIntersect($c5, $c6));
     }
-
 }

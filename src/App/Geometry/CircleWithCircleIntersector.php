@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Geometry;
 
 class CircleWithCircleIntersector implements IntersectorInterface
@@ -19,5 +18,4 @@ class CircleWithCircleIntersector implements IntersectorInterface
     {
         return $a->getCenter()->distance($b->getCenter()) <= ($a->getRadius() + $b->getRadius());
     }
-
 }

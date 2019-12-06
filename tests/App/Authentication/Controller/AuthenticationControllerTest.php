@@ -1,5 +1,4 @@
 <?php
-
 namespace AppTest\App\Authentication\Controller;
 
 use App\Authentication\Repository\UserRepositoryInterface;
@@ -78,13 +77,10 @@ class AuthenticationControllerTest extends TestCase
             ]
         );
 
-        
         // 'error' => 'Password is too short'
         $this->assertEquals('Password is too short', $authContr->login($request)['bindings']['errors']);
         $this->assertEquals('Password is too short', $authContr->login($request)->bindings['errors']);
 
-
-        
         //case II test if password is too short -> should return template with error msg 'Password is too short'
         $request = new Request(
             'POST',
@@ -116,7 +112,6 @@ class AuthenticationControllerTest extends TestCase
         $authContr->login($request);      
         
         // case VI test if password is too short -> should return template with error msg 'Password or username is incorrect'
-        // 
         $request = new Request(
             'POST',
             '/',
@@ -131,7 +126,6 @@ class AuthenticationControllerTest extends TestCase
         );
 
         $authContr->login($request);            
-
     }
 
     public function testLoginInvalidUsername()
@@ -183,7 +177,6 @@ class AuthenticationControllerTest extends TestCase
         );
 
         $response = $authContr->login($request);
-       
     }
 
     public function testSignin() 
@@ -197,14 +190,12 @@ class AuthenticationControllerTest extends TestCase
 
         $credentials = '2_qwasd123qe';
 
-
         $userPassEncMock = $this->createMock(UserPasswordEncoderInterface::class);
         
         $userPassEncMock->expects($this->any())
             ->method('encodePassword')
             ->with('mikepass')
             ->willReturn('2_qwasd123qe');
-
 
         $userTokenMock = $this->getMockBuilder(\stdClass::class)
             ->setMethods(['getUser','isAnonymous'])
@@ -220,7 +211,6 @@ class AuthenticationControllerTest extends TestCase
             ->with($user)
             ->willReturn(false);
 
-
         $authServiceMock = $this->createMock(AuthenticationServiceInterface::class);
 
         $authServiceMock->expects($this->any())
@@ -233,7 +223,6 @@ class AuthenticationControllerTest extends TestCase
             ->with($user)
             ->willReturn($credentials);
 
-
         $userRepoMock = $this->createMock(UserRepositoryInterface::class);
 
         $userRepoMock->expects($this->any())
@@ -245,8 +234,6 @@ class AuthenticationControllerTest extends TestCase
             ->method('findByLogin')
             ->with('mike_spike')
             ->willReturn($user);
-
-
 
         $authContr = new AuthenticationController(
             $userRepoMock, 
@@ -274,7 +261,6 @@ class AuthenticationControllerTest extends TestCase
             ->method('setCookie')
             ->with([self::AUTHENTICATION, $credentials]);
 
-
         $this->assertEquals('mike_spike', $user->getLogin());
         $this->assertEquals(false, empty($user->getLogin()));
         $this->assertEquals(true, strlen($user->getLogin()) > 6);
@@ -283,7 +269,5 @@ class AuthenticationControllerTest extends TestCase
         $this->assertEquals($user, $userRepoMock->findByLogin('mike_spike'));
         $this->assertEquals($userUpdated, $userRepoMock->save($userUpdated));
         $this->assertEquals(false, empty($authContr->redirect('/profile')));
-        // $this->assertEquals(false, empty($responseMock->setCookie('auth', $authServiceMock->generateCredentials($user))));
-
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Authentication\Controller;
 
 use App\Core\RequestDispatcher\BaseController;
@@ -12,8 +11,8 @@ use App\Authentication\Service\AuthenticationServiceInterface;
 class AuthenticationController extends BaseController
 {
     private $userRepository;
-    private $userPasswordEncoder;
 
+    private $userPasswordEncoder;
 
     public function __construct(
         UserRepositoryInterface $userRepository, 
@@ -100,8 +99,6 @@ class AuthenticationController extends BaseController
             $this->userRepository->save($user); 
 
             $credentials = $this->authService->generateCredentials($user);
-            //in test authService mock becouse we dont access to database
-            // save this cookie
             return $this->redirect("/profile")->setCookie('auth', $credentials);
         }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core\RequestDispatcher;
 
 use App\Authentication\Service\AuthenticationServiceInterface;
