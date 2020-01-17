@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import { SignIn } from './components/SignIn'
+import { LogIn } from './components/LogIn'
 import './App.css'
 const App = () => {
   const [tabSwitched, setTabSwitched] = useState(false)
@@ -11,12 +11,13 @@ const App = () => {
         We log in and sign in here
       </header>
       <div className='switcher'>
-        <a className='signIn'>Sign In</a>
-        <a className='logIn'>Log In</a>
+        <a className={`signIn ${tabSwitched ? '' : 'active'}`} onClick={()=> setTabSwitched(false)}>Sign In</a>
+        <a className={`logIn ${tabSwitched ? 'active' : ''}`} onClick={()=> setTabSwitched(true)}>Log In</a>
       </div>
       {!tabSwitched 
         ? <SignIn /> 
-        : ''}
+        : <LogIn />
+      }
     </div>
   );
 }

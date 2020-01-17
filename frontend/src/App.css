@@ -11,6 +11,12 @@ a:hover {
   cursor: pointer;
 }
 
+a.active {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 .switcher {
   padding: 10px;
 }
