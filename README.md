@@ -1,6 +1,13 @@
-Skeleton PHP Authentication Application
 
-The app should allow to create users via UI, log in and carry on using application, being logged in. 
+
+# The app should allow to create users via UI, log in and carry on using application, being logged in. 
+
+Used:
+* PHP
+* MySQL
+* Symphony
+* React
+* Docker
 
 Project structure:
 * www - root directory, contains index.php (a script that processes all incoming requests)
@@ -9,17 +16,18 @@ Project structure:
 * tests - tests (unit)
 * docker - container docker settings
 
-Docker is optional.
-
 Installation:
 * Install docker
-* Go to the docker folder
-* Docker-compose up (-d run as daemon)
-* Wait until all the image is installed, then open localhost: 8080 and if we see "Hello World", then everything is ok :)
+* In Docker folder run: $ docker-compose up (-d run as daemon)
+
+[http://localhost:5006](http://localhost:5006) to view it in the browser.
+
+To run React front-end:
+* Go to frontend folder and then $ yarn && yarn start
 
 How to run tests?
-* docker exec -ti docker_php_1 bash
-* vendor/bin/phpunit tests/
+* $ docker exec -ti docker_php_1 bash
+* $ vendor/bin/phpunit tests/
 
 How to close all containers?
-* docker-compose down -v
+* $ docker-compose down -v
