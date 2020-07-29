@@ -10,7 +10,7 @@ WIP, currently error after creating user request.
 * React with Redux (WIP)
 * Docker
 
-![alt text](https://github.com/dbstylesnet/dbflix/blob/master/screenshot.png)
+![alt text](https://github.com/dbstylesnet/auth-php-react/blob/master/screenshot.png)
 
 ## Project structure:
 * www - root directory, contains index.php (processes all incoming requests)
