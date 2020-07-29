@@ -19,9 +19,9 @@
 <div id="main-wrapper"> 
 
     <h2 class="page-title"><?= $pageTitle ?></h2>
+    <div>Hello <?=$name?></div>
     <div><?= $description ?></div>
 
-    <div>Hello <?=$name?>, try to enrol</div>
 
 
     <?= $this->render('/auth/login.form.inc.php', [

@@ -27,8 +27,8 @@ class AuthenticationController extends BaseController
     public function index(RequestInterface $request)
     {
          return $this->renderTemplate('/auth/login.inc.php', [ 
-            "name" => $request->getQueryParam("name") ?: "Unknown", 
-            "pageTitle" => "Authentication",
+            "name" => $request->getQueryParam("name") ?: "", 
+            "pageTitle" => "PHP Authentication page",
             "description" => "Provide details in order to login",
             "status" => "You have been",
             "success" => "logged in",
