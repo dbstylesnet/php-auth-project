@@ -25,12 +25,12 @@ WIP, currently error after creating user request.
 
 [http://localhost:5004/auth](http://localhost:5004/auth) to view it in the browser.
 
-### In order to run React front-end (WIP)
+### In order to run React front-end (WIP):
 * Go to frontend folder and then in terminal type command: `yarn && yarn start`
 
-### In order to run tests?
+### In order to run tests:
 * $ docker exec -ti docker_php_1 bash
 * $ vendor/bin/phpunit tests/
 
-### In order to close all containers?
+### In order to close all containers:
 * $ docker-compose down -v
