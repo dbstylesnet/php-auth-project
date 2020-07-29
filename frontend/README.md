@@ -1,6 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-# Front-end for auth-app
+# Front-end for auth-php-react
 Work in progress (implementing Redux form)
 
 ### `yarn && yarn start` to start
