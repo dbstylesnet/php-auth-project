@@ -23,7 +23,7 @@ WIP, currently error after creating user request.
 * Install docker
 * In Docker folder run: $ docker-compose up (-d run as daemon)
 
-[http://localhost:5004](http://localhost:5004) to view it in the browser.
+[http://localhost:5004/auth](http://localhost:5004/auth) to view it in the browser.
 
 ### In order to run React front-end (WIP)
 * Go to frontend folder and then in terminal type command: `yarn && yarn start`
