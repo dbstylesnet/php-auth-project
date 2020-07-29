@@ -1,7 +1,7 @@
 
 # PHP authentication project
 Project allows to create users via UI, log in and carry on using application after being logged in.
-WIP, currently error after creating user request.
+WIP, currently error after creating user.
 
 ### Tech stack:
 * PHP
