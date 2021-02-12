@@ -96,7 +96,7 @@ class AuthenticationController extends BaseController
                 $salt,
                 NULL
             );
-            $this->userRepository->save($user); 
+            $user = $this->userRepository->save($user); 
 
             $credentials = $this->authService->generateCredentials($user);
             return $this->redirect("/profile")->setCookie('auth', $credentials);

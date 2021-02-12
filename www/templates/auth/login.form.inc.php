@@ -2,8 +2,8 @@
 <? $this->includeJS('/static/auth/login.wrapper.form.js'); ?>
 
 <div class="buttons-cont">
-  <button class="formtab active loginbtn">Log In Tab</button>
-  <button class="formtab signinbtn">Sign In Tab</button>
+  <button class="formtab active loginbtn">Log In</button>
+  <button class="formtab signinbtn">Sign Up</button>
 </div>
 <div class="formsCont">
   <form id="loginform" class="modal-content animate login" action="/login" method='post'>

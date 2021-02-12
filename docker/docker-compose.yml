@@ -26,6 +26,7 @@ services:
         ports:
             - 3307:3306 # avoid local mysql port busy
         volumes:
+            - ./mysql/scripts:/docker-entrypoint-initdb.d 
             - ./mysql/mysql.d:/etc/mysql/conf.d
             # https://stackoverflow.com/questions/39175194/docker-compose-persistent-data-mysql
             - ../dump:/var/lib/mysql
@@ -35,3 +36,4 @@ services:
             MYSQL_PASSWORD: "app"
             MYSQL_DATABASE: "app"
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
