@@ -1,5 +1,5 @@
 
-# PHP authentication project
+# PHP authentification project
 Project allows to create users via UI, log in and carry on using application after being logged in.
 
 ### Tech stack:
