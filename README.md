@@ -6,7 +6,7 @@ Project allows to create users via UI, log in and carry on using application aft
 * PHP
 * MySQL
 * Symphony
-* React with Redux (WIP)
+* React
 * Docker
 
 ![PHP Authentification](https://github.com/dbstylesnet/auth-php-react/blob/master/screenshot.png)
