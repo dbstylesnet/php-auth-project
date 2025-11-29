@@ -12,7 +12,7 @@ Project allows to create users via UI, log in and carry on using application aft
 ![PHP Authentification](https://github.com/dbstylesnet/auth-php-react/blob/master/screenshot.png)
 
 ## Project structure:
-* www - root directory, contains index.php (processes all incoming requests)
+* www - root directory
 * src - application source code
 * static - directory with statics
 * tests - tests (unit)
@@ -20,9 +20,13 @@ Project allows to create users via UI, log in and carry on using application aft
 
 ##  Installation:
 * Install docker
-* In Docker folder run: $ docker-compose up (-d run as daemon)
+* Install docker-compose
+* In Docker folder run: $ docker-compose up -d
 
 [http://localhost:5004/auth](http://localhost:5004/auth) to view it in the browser.
+
+* In case there is autoload error under localhost, run:
+* docker-compose run --rm composer install
 
 ### In order to run tests:
 * $ docker exec -ti docker_php_1 bash
