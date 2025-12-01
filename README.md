@@ -1,6 +1,6 @@
 
 # PHP authetication project
-Project allows to create users via UI, log in and carry on using application after being logged in.
+The project allows users to be created through the UI, supports login, and enables continued use of the application once authenticated.
 
 ### Tech stack:
 * PHP
