@@ -12,6 +12,11 @@ const onSubmit = async values => {
 const LogIn = () => {
     return (
         <Wrapper>
+            <h2>Welcome Back</h2>
+            <p className="subtitle">Sign in to your account</p>
+            <div className="imgcontainer">
+                <img src="/avatar.jpg" alt="Avatar" className="avatar" />
+            </div>
             <Form
                 onSubmit={onSubmit}
                 render={({handleSubmit, form, submitting, pristine, values }) => (
@@ -22,7 +27,7 @@ const LogIn = () => {
                                 name="login"
                                 component="input"
                                 type="text"
-                                placeholder="Login"
+                                placeholder="Enter your username"
                             />
                         </div>
                         <div className="fieldWrapper">
@@ -30,23 +35,22 @@ const LogIn = () => {
                             <Field
                                 name="password"
                                 component="input"
-                                type="text"
-                                placeholder="Password"
+                                type="password"
+                                placeholder="Enter your password"
                             />
                         </div>
                         <div className="buttons">
                             <button type="submit" disabled={submitting || pristine}>
-                                Submit
+                                {submitting ? 'Signing In...' : 'Sign In'}
                             </button>
                             <button
                                 type="button"
                                 onClick={form.reset}
                                 disabled={submitting || pristine}
                             >
-                                Reset
+                                Clear
                             </button>
                         </div>
-                        <pre>{JSON.stringify(values, 0, 2)}</pre>
                     </form>
                 )}
             />

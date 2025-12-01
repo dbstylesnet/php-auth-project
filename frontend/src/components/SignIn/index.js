@@ -12,9 +12,13 @@ const onSubmit = async values => {
 const SignIn = () => {
     return(
         <Wrapper>
+            <h2>Create Account</h2>
+            <p className="subtitle">Sign up to get started</p>
+            <div className="imgcontainer">
+                <img src="/avatar.jpg" alt="Avatar" className="avatar" />
+            </div>
             <Form
                 onSubmit={onSubmit}
-                // initialValues={{ login: 'larry', employed: false }}
                 render={({ handleSubmit, form, submitting, pristine, values }) => (
                     <form onSubmit={handleSubmit}>
                         <div className="fieldWrapper">
@@ -23,7 +27,7 @@ const SignIn = () => {
                                 name="SignIn"
                                 component="input"
                                 type="text"
-                                placeholder="Sign In"
+                                placeholder="Choose a username"
                             />
                         </div>
                         <div className="fieldWrapper">
@@ -31,8 +35,8 @@ const SignIn = () => {
                             <Field
                                 name="SignInPassword"
                                 component="input"
-                                type="text"
-                                placeholder="Password"
+                                type="password"
+                                placeholder="Create a password"
                             />
                         </div>            
                         <div className="fieldWrapper">
@@ -40,23 +44,22 @@ const SignIn = () => {
                             <Field
                                 name="ConfirmPassword"
                                 component="input"
-                                type="text"
-                                placeholder="Confirm Password"
+                                type="password"
+                                placeholder="Confirm your password"
                             />
                         </div>       
                         <div className="buttons">
                             <button type="submit" disabled={submitting || pristine}>
-                                Submit
+                                {submitting ? 'Creating...' : 'Create Account'}
                             </button>
                             <button
                                 type="button"
                                 onClick={form.reset}
                                 disabled={submitting || pristine}
                             >
-                                Reset
+                                Clear
                             </button>
                         </div>
-                        <pre>{JSON.stringify(values, 0, 2)}</pre>
                     </form>
                 )}
             />

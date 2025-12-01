@@ -8,10 +8,10 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        We log in and sign in here
+        <h1>Member Portal</h1>
       </header>
       <div className='switcher'>
-        <a className={`signIn ${tabSwitched ? '' : 'active'}`} onClick={()=> setTabSwitched(false)}>Sign In</a>
+        <a className={`signIn ${tabSwitched ? '' : 'active'}`} onClick={()=> setTabSwitched(false)}>Sign Up</a>
         <a className={`logIn ${tabSwitched ? 'active' : ''}`} onClick={()=> setTabSwitched(true)}>Log In</a>
       </div>
       {!tabSwitched 

@@ -7,51 +7,55 @@
 </div>
 <div class="formsCont">
   <form id="loginform" class="modal-content animate login" action="/login" method='post'>
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Sign in to your account</p>
+      
       <div class="imgcontainer">
-        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+        <img src="/static/auth/avatar.jpg" alt="Avatar" class="avatar">
       </div>
 
       <div class="container">
-
         <? if(!empty($error)) { ?>
             <div>
               <?= $error ?>
             </div>
         <?} ?>    
         <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <input type="text" placeholder="Enter your username" name="username" required>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter your password" name="password" required>
           
-        <button type="submit">Log In</button>
+        <button type="submit">Sign In</button>
       </div>
 
   </form>
 
   <form id="signinform" class="modal-content animate signin" action="/signin" method='post'>
+      <h2>Create Account</h2>
+      <p class="subtitle">Sign up to get started</p>
+      
       <div class="imgcontainer">
-        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+        <img src="/static/auth/avatar.jpg" alt="Avatar" class="avatar">
       </div>
 
       <div class="container">
-
         <? if(!empty($error)) { ?>
             <div>
               <?= $error ?>
             </div>
         <?} ?>    
         <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <input type="text" placeholder="Choose a username" name="username" required>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Create a password" name="password" required>
           
-        <label for="password"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" required>
+        <label for="password_repeat"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Confirm your password" name="password_repeat" required>
           
 
-        <button id="signinbtn" type="submit">Sign In</button>
+        <button id="signinbtn" type="submit">Create Account</button>
       </div>
 
   </form>

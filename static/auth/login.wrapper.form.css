@@ -1,3 +1,55 @@
-.main-wrapper {
-    background:#ccc;
+#main-wrapper {
+    background: linear-gradient(135deg, #5b21b6 0%, #6b46c1 50%, #7c3aed 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: white;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+#main-wrapper .page-title {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 20px 0;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff 0%, #d1d5db 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+}
+
+#main-wrapper > div {
+    color: #d1d5db;
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Center the auth form container - wrap buttons and forms */
+.buttons-cont,
+.formsCont {
+    margin-left: auto;
+    margin-right: auto;
 }
