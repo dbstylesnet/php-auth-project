@@ -1,6 +1,4 @@
 
-    <footer class='footer'>
-        Copyright 2019
-    </footer>
+    <footer class='footer'></footer>
 </body>
 </html>

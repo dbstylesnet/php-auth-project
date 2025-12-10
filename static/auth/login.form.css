@@ -7,6 +7,30 @@ form {
   width: 100%;
 }
 
+::placeholder {
+  color: #888;
+}
+
+/* WebKit browsers */
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+/* Firefox 19+ */
+::-moz-placeholder {
+  color: #888;
+}
+
+/* Firefox 4–18 */
+:-moz-placeholder {
+  color: #888;
+}
+
+/* Internet Explorer 10–11 */
+:-ms-input-placeholder {
+  color: #888;
+}
+
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
@@ -35,6 +59,11 @@ input[type=text]:hover, input[type=password]:hover {
 
 input[type=text]::placeholder, input[type=password]::placeholder {
   color: #6b7280;
+}
+
+::placeholder {
+  color: #ccc !important; 
+  opacity: 1;
 }
 
 /* Set a style for all buttons */
