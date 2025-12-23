@@ -20,7 +20,10 @@ class ProfileController extends BaseController
             return $this->redirect("/auth");
         }
 
-        return $this->response()->setContent("Hello {$token->getUser()->getLogin()}");
+        return $this->renderTemplate('/personal/profile.inc.php', [
+            'user' => $token->getUser(),
+            'pageTitle' => 'User Profile'
+        ]);
     }
 
     public function mockIndex(RequestInterface $request)

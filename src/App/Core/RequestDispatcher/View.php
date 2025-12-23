@@ -3,10 +3,11 @@ namespace App\Core\RequestDispatcher;
 
 class View 
 {
-    public function render($path, array $bindings)
+    public function render($path, array $bindings = [])
     {
         ob_start();
         extract($bindings);
+        // $this is available in included files when called from a method
         include TEMPLATE_DIR . $path;
         $output = ob_get_contents();
         ob_end_clean();
